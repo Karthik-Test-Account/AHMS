@@ -1,7 +1,8 @@
 import React from "react";
 import { Box, Grid, Toolbar, Typography } from "@mui/material";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import PieChartComponent from "../PieChart/PieChart";
+import PieChartComponent from "../../PieChart/PieChart";
+
 const drawerWidth = 240;
 const headerHeight = 50;
 

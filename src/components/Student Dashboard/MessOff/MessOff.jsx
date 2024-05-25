@@ -1,6 +1,6 @@
 import { Typography,Box,Toolbar, Grid,Button } from '@mui/material'
 import React from 'react'
-import PieChartComponent from '../PieChart/PieChart';
+import PieChartComponent from '../../PieChart/PieChart';
 
 const headerHeight=50;
 const drawerWidth=240;
