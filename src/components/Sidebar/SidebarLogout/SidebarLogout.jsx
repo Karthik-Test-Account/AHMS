@@ -1,0 +1,24 @@
+import React from 'react'
+import LogoutIcon from '@mui/icons-material/Logout';
+import { Box, Button, Typography } from '@mui/material';
+function SidebarLogout() {
+  return (
+    <Box
+      sx={{
+        color: 'white',position: 'fixed',left:0,bottom:0,width: '240px',
+        display: 'flex',alignItems: 'center',justifyContent:'center',
+        padding:'0 10px',zIndex: 1300,
+        '@media (max-width:600px)':{display:'none'}
+      }}
+    >
+        <Button variant="contained" href="#" fullWidth sx={{textTransform:'none',marginBottom:'40px',display:'flex',justifyContent:'center',gap:'10px'}}>
+            <LogoutIcon />
+            <Typography variant="h6">
+                Log Out
+            </Typography>
+        </Button>
+    </Box>
+  )
+}
+
+export default SidebarLogout
