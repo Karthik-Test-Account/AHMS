@@ -7,6 +7,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoneyBill1, faStar } from '@fortawesome/free-regular-svg-icons';
+import SideBarText from '../SidebarHeading/SidebarText';
 
 const navMenus = [
   { text: 'Home', icon: <HomeIcon />, to: '/' },
@@ -26,7 +27,7 @@ const SidebarItems = ({ onClick }) => (
           to={navMenu.to}
           key={navMenu.text}
           style={({ isActive }) => ({
-            color: isActive ? '#182A6A' : 'white',
+            color: isActive ? '#1976D2' : 'white',
             textDecoration: 'none',
           })}
           onClick={onClick}
@@ -34,7 +35,7 @@ const SidebarItems = ({ onClick }) => (
           {({ isActive }) => (
             <ListItem disablePadding>
               <ListItemButton>
-                <ListItemIcon sx={{ color: isActive ? '#112149' : 'white' }}>{navMenu.icon}</ListItemIcon>
+                <ListItemIcon sx={{ color: isActive ? '#1976D2' : 'white' }}>{navMenu.icon}</ListItemIcon>
                 <ListItemText primary={navMenu.text} />
               </ListItemButton>
             </ListItem>
