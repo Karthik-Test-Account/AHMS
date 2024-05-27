@@ -33,20 +33,20 @@ import {
         <div
           style={{
             display: "flex",
-            height: "100%",
-            // alignItems: "center",
+            height: "100vh",
+            alignItems: "center",
             justifyContent: "center",
+            backgroundColor:'#101826'
           }}
         >
-          <Container maxWidth="xs" sx={{ }}>
+          <Container maxWidth="xs" sx={{}}>
          
-              <Card>
+              <Card sx={{backgroundColor:'#1D2936',color:'white'}}>
                 <CardContent>
-     
                   <Grid
                     container
                     spacing={2}
-                    sx={{ display: "flex", flexDirection: "column" }}
+                    sx={{ display: "flex", flexDirection: "column"}}
                   >
                     <Grid item>
                       <Typography variant="h4" align="center">
@@ -57,23 +57,36 @@ import {
                       <TextField
                         fullWidth
                         variant="outlined"
-                        label="Enter Email Address"
+                        placeholder="Enter Email Address"
                         type="email"
                         value={inputs.email}
                         name="email"
-                        // handle the form event
                         onChange={handleChange}
+                        sx={{
+                          backgroundColor: '#374151',
+                          input:{color:'white'},
+                        }}
+                        InputLabelProps={{
+                          style: { color: 'white' },
+                        }}
                       ></TextField>
                     </Grid>
                     <Grid item>
                       <TextField
                         variant="outlined"
-                        label="Enter Password"
+                        placeholder="Enter Password"
                         type="password"
                         name="password"
                         value={inputs.password}
                         fullWidth
                         onChange={handleChange}
+                        sx={{
+                          backgroundColor: '#374151',
+                          input:{color:'white'},
+                        }}
+                        InputLabelProps={{
+                          style: { color: 'white' },
+                        }}
                       ></TextField>
                     </Grid>
                     <Grid item>

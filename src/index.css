@@ -10,3 +10,6 @@ html,body,#root{
 .icon{
   cursor: pointer;
 }
+.input-placeholder::placeholder{
+  color: 'white';
+}

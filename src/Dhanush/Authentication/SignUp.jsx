@@ -1,125 +1,105 @@
-import {
-  TextField,
-  Button,
-  Grid,
-  Typography,
-  Container,Box,
-  Checkbox,
-  FormControlLabel,
-  Link,
-  Card,
-  CardContent,
-} from "@mui/material";
-import { Google } from "@mui/icons-material";
-// import { maxHeight, minHeight } from "@mui/system";
-const SignUp = () => {
+import React from "react"
+import {Card, CardContent, Container, FormControlLabel, Grid, TextField, Typography,Checkbox, Button} from '@mui/material'
+function App() {
+
   return (
     <>
-      <Box
-
-        sx={{
-          display: "flex",
-          position:"relative",
-          justifyContent: "center",
-          // marginTop:{lg:"100px",md:"50px",sm:"30px"},
-          height:"100%"
-        }}
-
-      >
-       
-          <Card sx={{display:"flex",alignItems:"center",justifyContent:"center"}}>
+      <div style={{display:'flex',alignItems:'center',height:'100vh',backgroundColor:'#101826'}}>
+        <Container maxWidth='sm' style={{padding:'10px'}}>
+          <Card sx={{backgroundColor:'#1D2936',color:'white'}}>
             <CardContent>
-              <Grid container spacing={2} >
-                <Grid item  sm={12} xs={12}>
-                  <Typography variant="h4" align="center">
+              <Grid container spacing={2} style={{display:'flex',flexDirection:'column'}}>
+                <Grid item>
+                  <Typography variant="h4" style={{fontWeight:'bold'}}>
                     Sign Up
                   </Typography>
                 </Grid>
-                <Grid item  sm={6} xs={12}>
-                  <TextField
-                    fullWidth
-                    variant="outlined"
-                    label="Enter Full Name"
-                  ></TextField>
+                <Grid item>
+                  <Typography variant="body1" style={{fontWeight:'bolder',color:'slategray',fontSize:'14px'}}>
+                    Please fill in this form to create an account!
+                  </Typography>
                 </Grid>
-                <Grid item  sm={6} xs={12}>
-                  <TextField
-                    fullWidth
-                    variant="outlined"
-                    label="Enter Email Address"
-                  ></TextField>
-                </Grid>
-                <Grid item  sm={6} xs={12}>
-                  <TextField
-                    variant="outlined"
-                    label="Enter Password"
-                    fullWidth
-                  ></TextField>
-                </Grid>
-                <Grid item  sm={6} xs={12}>
-                  <TextField
-                    variant="outlined"
-                    label="Enter Password"
-                    fullWidth
-                  ></TextField>
-                </Grid>
-                <Grid item  sm={6} xs={12}>
-                  <TextField
-                    variant="outlined"
-                    label="Enter Password"
-                    fullWidth
-                  ></TextField>
-                </Grid>
-                <Grid item  sm={6} xs={12}>
-                  <TextField
-                    variant="outlined"
-                    label="Enter Password"
-                    fullWidth
-                  ></TextField>
-                </Grid>
-
-                <Grid item  sm={12} xs={12}>
-                  <Grid
-                    container
-                    sx={{ display: "flex",alignItems:"center",justifyContent:"space-between" }}
-                    spacing={2}
-                  >
-                    <Grid item>
-                      <FormControlLabel
-                        label="Remember me"
-                        control={<Checkbox value="" color="primary" />}
-                      />
+                <Grid item>
+                  <Grid container style={{display:'flex',justifyContent:'space-between',alignItems:'center'}} spacing={2}>
+                    <Grid item xs={12} sm={6}>
+                      <TextField 
+                      variant="outlined"
+                      placeholder="First Name"
+                      fullWidth
+                      sx={{backgroundColor: '#374151',input:{color:'white'}}}
+                      InputLabelProps={{style: { color: 'white' }}}
+                      >
+                      </TextField>
                     </Grid>
-                    <Grid item>
-                      <Link href="#" variant="body2">
-                        Forgot Password?
-                      </Link>
+                    <Grid item xs={12} sm={6}>
+                      <TextField 
+                      variant="outlined"
+                      placeholder="Last Name"
+                      fullWidth
+                      sx={{backgroundColor: '#374151',input:{color:'white'}}}
+                      InputLabelProps={{style: { color: 'white' }}}
+                      >
+                      </TextField>
                     </Grid>
                   </Grid>
                 </Grid>
-               
-                <Grid item  sm={6} xs={12}>
-                  <Button variant="contained" fullWidth>
-                    Sign in
-                  </Button>
+                <Grid item>
+                  <TextField
+                    placeholder="Email"
+                    fullWidth
+                    variant="outlined"
+                    sx={{backgroundColor: '#374151',input:{color:'white'}}}
+                    InputLabelProps={{style: { color: 'white' }}}
+                  >
+                  </TextField>
                 </Grid>
-                <Grid item  sm={6} xs={12}>
-                  <Button variant="contained" fullWidth>
-                    <Google sx={{ paddingRight: "10px" }}></Google>
-                    Sign in with Google
-                  </Button>
+                <Grid item>
+                  <TextField
+                    placeholder="Password"
+                    fullWidth
+                    variant="outlined"
+                    sx={{backgroundColor: '#374151',input:{color:'white'}}}
+                    InputLabelProps={{style: { color: 'white' }}}
+                  >
+                  </TextField>
                 </Grid>
-                <Grid item sx={{display:"flex",justifyContent:"center"}} md={12} sm={12} xs={12}>
-                  <Link href="#" variant="body2">
-                    Don`t have an account? Sign up
-                  </Link>
+                <Grid item>
+                  <TextField
+                    placeholder="Confirm Password"
+                    fullWidth
+                    variant="outlined"
+                    sx={{backgroundColor: '#374151',input:{color:'white'}}}
+                    InputLabelProps={{style: { color: 'white' }}}
+                  >
+                  </TextField>
+                </Grid>
+                <Grid item>
+                  <FormControlLabel 
+                    control={<Checkbox  color="primary"/>}  
+                    label="Remember me" 
+                  />
+                </Grid>
+                <Grid item>
+                  <Grid container style={{display:'flex',justifyContent:'space-between',alignItems:'center'}} spacing={2}>
+                    <Grid item xs={12} sm={6}>
+                      <Button variant="contained" fullWidth color="primary">
+                      Sign Up
+                      </Button>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <Button variant="contained" fullWidth color="primary">
+                        Sign in with Google
+                      </Button>
+                    </Grid>
+                  </Grid>
                 </Grid>
               </Grid>
             </CardContent>
           </Card>
-        {/* </Container> */}
-      </Box>
+        </Container>
+      </div>
     </>
-  );
-};
-export default SignUp;
+  )
+}
+
+export default App;

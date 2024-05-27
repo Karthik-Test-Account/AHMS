@@ -11,8 +11,8 @@ function Suggestions() {
             padding: '0', marginTop: `${headerHeight}px`, '@media (min-width:600px)': { marginLeft: `${drawerWidth}px ` }
         }}>
             <Toolbar />
-            <Box sx={{ width: '100%',minHeight:'100vh', height: 'auto', backgroundColor: '#1B1918' }}>
-                <Grid container gap={2} sx={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', gap: '10px' }}>
+            <Box sx={{ width: '100%',height:'100%', backgroundColor: '#1B1918' }}>
+                <Grid container gap={2} sx={{ width: '100%',height:'auto', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', gap: '10px' }}>
                     <Grid item>
                         <Typography variant='h4' sx={{ fontWeight: 'bold', color: 'white' }}>
                             Suggestions
