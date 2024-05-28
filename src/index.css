@@ -13,3 +13,19 @@ html,body,#root{
 .input-placeholder::placeholder{
   color: 'white';
 }
+.adminHome-details{
+  width:30%;
+  display:flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items:center;
+  background-color: #080808;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+@media (max-width:900px){
+  .adminHome-details{
+    width: 100%;
+  }
+}

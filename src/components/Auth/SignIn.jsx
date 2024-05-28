@@ -13,7 +13,7 @@ import {
   } from "@mui/material";
   import { useState } from "react";
   
-  const SignIn = () => {
+  const SignIn = (props) => {
     const [inputs, setInput] = useState({
       email: "",
       password: "",
@@ -49,8 +49,8 @@ import {
                     sx={{ display: "flex", flexDirection: "column"}}
                   >
                     <Grid item>
-                      <Typography variant="h4" align="center">
-                        Sign in
+                      <Typography variant="h5" align="center">
+                        Sign in to your account {props.title}
                       </Typography>
                     </Grid>
                     <Grid item>

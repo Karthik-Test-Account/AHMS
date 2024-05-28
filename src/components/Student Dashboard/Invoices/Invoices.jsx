@@ -54,6 +54,7 @@ function Invoices() {
               </Grid>
             </Grid>
           </Grid>
+          {/* START OF BOX */}
           <Grid item sx={{ width: '70%', height: 'auto', backgroundColor: 'black', '@media (max-width:980px)': { width: '100%' } }}>
             <Grid container sx={{ width: '100%', height: '100%', backgroundColor: '#090909', padding: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'start', gap: '10px',overflowY:'auto' }}>
               <Grid item>
@@ -79,6 +80,7 @@ function Invoices() {
               </Grid>
             </Grid>
           </Grid>
+          {/* END OF BOX */}
         </Grid>
       </Box>
     </div>

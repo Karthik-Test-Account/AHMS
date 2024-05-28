@@ -1,7 +1,5 @@
-import {  useState } from "react";
-
+import React,{useState} from 'react'
 import AppBar from "@mui/material/AppBar";
-import { CssBaseline, } from "@mui/material";
 import Drawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -12,18 +10,14 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Box, Stack } from "@mui/system";
 import MenuIcon from "@mui/icons-material/Menu";
 import { MenuItem } from "@mui/material";
-// import SignIn from "../components/Authentication/SignIn";
-export default function Home() {
-  const [open, setOpen] = useState(false);
+function LandingPageHeader() {
+    const [open, setOpen] = useState(false);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
   return (
-    <>
-      <div style={{ backgroundColor: "#0C1B2A", minHeight: "100vh",height:"auto" }}>
-        <CssBaseline></CssBaseline>
-        <AppBar
+    <AppBar
           position="fixed"
           sx={{
             backgroundColor: "transparent",
@@ -74,7 +68,7 @@ export default function Home() {
                 <Button color="inherit">Request</Button>
                 <Button color="inherit">Contact</Button>
                 <Button color="inherit">AdminLogin</Button>
-                <Button variant="contained" >Login</Button>
+                <Button variant="contained">Login</Button>
               </Stack>
 
               {/* toggle menu bar */}
@@ -148,58 +142,7 @@ export default function Home() {
             </Toolbar>
           </Container>
         </AppBar>
-
-        <main>
-          <Container
-            maxWidth="lg"
-            sx={{
-              height: "50vh",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <div
-              style={{
-                display: "grid",
-                placeItems: "center",
-                gap: "10px",
-                width: "100%",
-                
-                marginTop: "300px",
-              }}
-            >
-              <Typography
-                // variant="h2"
-                sx={{ fontWeight: "bold" ,fontSize:{xs:"2.5rem",md:"3.5rem"}}}
-                color="primary"
-                align="center"
-                
-              >
-                Illuminati Hostel Management System
-              </Typography>
-              <Typography variant="h5" color="white" align="center">
-                One Solution for all hostel needs
-              </Typography>
-
-              {/* <div style={{border:"2px solid black",width:"100%",display:"flex",justifyContent:"center",flexDirection:"column"}}> */}
-
-              <Button
-                variant="contained"
-                sx={{ width: "25%", marginTop: "40px" }}
-              >
-                Login
-              </Button>
-              <Typography variant="body1" color="white">
-                OR
-              </Typography>
-              <Button variant="text" sx={{ color: "white", width: "25%", }}>
-                Register
-              </Button>
-              {/* </div> */}
-            </div>
-          </Container>
-        </main>
-      </div>
-    </>
-  );
+  )
 }
+
+export default LandingPageHeader
