@@ -11,34 +11,35 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import GroupsIcon from '@mui/icons-material/Groups';
 
 const studentNavMenus = [
-  { text: 'Home', icon: <HomeIcon />, to: '/' },
-  { text: 'Mess Off', icon: <RestaurantMenuIcon />, to: '/messoff' },
+  { text: 'Home', icon: <HomeIcon />, to: '/student' },
+  { text: 'Mess Off', icon: <RestaurantMenuIcon />, to: '/student/messoff' },
   { text: 'Attendance', icon: <EditIcon />, to: '/attendance' },
-  { text: 'Invoices', icon: <FontAwesomeIcon icon={faMoneyBill1} />, to: '/invoices' },
-  { text: 'Complaints', icon: <SentimentVeryDissatisfiedIcon />, to: '/complaints' },
-  { text: 'Suggestions', icon: <FontAwesomeIcon icon={faStar} />, to: '/suggestions' },
+  { text: 'Invoices', icon: <FontAwesomeIcon icon={faMoneyBill1} />, to: '/student/invoices' },
+  { text: 'Complaints', icon: <SentimentVeryDissatisfiedIcon />, to: '/student/complaints' },
+  { text: 'Suggestions', icon: <FontAwesomeIcon icon={faStar} />, to: '/student/suggestions' },
 ];
 
-const adminNavMenus=[
-  { text: 'Home', icon: <HomeIcon />, to: '/' },
-  { text:'Register Student',icon: <PersonAddAltIcon/>,to:'/registerStudent'},
-  { text: 'Attendance', icon: <EditIcon />, to: '/attendance' },
-  { text: 'Mess', icon: <RestaurantMenuIcon />, to: '/messoff' },
-  { text: 'Invoices', icon: <FontAwesomeIcon icon={faMoneyBill1} />, to: '/invoices' },
-  { text: 'Complaints', icon: <SentimentVeryDissatisfiedIcon />, to: '/complaints' },
-  { text: 'Suggestions', icon: <FontAwesomeIcon icon={faStar} />, to: '/suggestions' },
-  { text:'All Students', icon:<GroupsIcon/>,to:'/allStudents'}
-]
+// const adminNavMenus=[
+//   { text: 'Home', icon: <HomeIcon />, to: '/' },
+//   { text:'Register Student',icon: <PersonAddAltIcon/>,to:'/registerStudent'},
+//   { text: 'Attendance', icon: <EditIcon />, to: '/attendance' },
+//   { text: 'Mess', icon: <RestaurantMenuIcon />, to: '/messoff' },
+//   { text: 'Invoices', icon: <FontAwesomeIcon icon={faMoneyBill1} />, to: '/invoices' },
+//   { text: 'Complaints', icon: <SentimentVeryDissatisfiedIcon />, to: '/complaints' },
+//   { text: 'Suggestions', icon: <FontAwesomeIcon icon={faStar} />, to: '/suggestions' },
+//   { text:'All Students', icon:<GroupsIcon/>,to:'/allStudents'}
+// ]
 
 
 const SidebarItems = ({ onClick }) => (
   <>
     <Divider sx={{ backgroundColor: 'white' }} />
     <List>
-      {adminNavMenus.map((navMenu) => (
+      {studentNavMenus.map((navMenu) => (
         <NavLink
           to={navMenu.to}
           key={navMenu.text}
+          className="active-link"
           style={({ isActive }) => ({
             color: isActive ? '#1976D2' : 'white',
             textDecoration: 'none',

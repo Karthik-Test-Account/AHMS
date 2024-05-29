@@ -1,7 +1,6 @@
 import React from 'react'
 import {CssBaseline} from '@mui/material'
 import LandingPageHeader from './components/Landing Page/LandingPageHeader'
-import LandingPageBody from './components/Landing Page/LandingPageBody'
 import {Outlet} from 'react-router-dom'
 function LandingPageLayout() {
   return (

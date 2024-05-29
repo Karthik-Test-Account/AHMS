@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
-import Layout from './Layout.jsx'
+// import Layout from './Layout.jsx'
 import Home from "./components/Student Dashboard/Home/Home.jsx"
 import Suggestions from "./components/Student Dashboard/Suggestions/Suggestions.jsx"
 import Invoices from "./components/Student Dashboard/Invoices/Invoices.jsx"
@@ -35,28 +35,18 @@ import App from './App.jsx'
 //   }
 // ])
 
-const studentDashboardRouter = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path='/' element={<Layout/>}>
-      <Route path='' element={<Home/>}/>
-      <Route path='suggestions' element={<Suggestions/>}/>
-      <Route path='invoices' element={<Invoices/>}/>
-      <Route path='messoff' element={<MessOff/>}/>
-    </Route>
-  )
-)
 
-const adminDashboardRouter= createBrowserRouter(
-  createRoutesFromElements(
-    <Route path='/' element={<Layout/>}>
-      <Route path='' element={<AdminHome/>}/>
-    </Route>
-  )
-)
+
+// const adminDashboardRouter= createBrowserRouter(
+//   createRoutesFromElements(
+//     <Route path='/' element={<Layout/>}>
+//       <Route path='' element={<AdminHome/>}/>
+//     </Route>
+//   )
+// )
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* <RouterProvider router={adminDashboardRouter}/> */}
-    <App></App>
+    <App/>
   </React.StrictMode>,
 )

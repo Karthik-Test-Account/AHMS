@@ -1,10 +1,10 @@
 import React from "react"
 import {Card, CardContent, Container, FormControlLabel, Grid, TextField, Typography,Checkbox, Button} from '@mui/material'
-function App() {
+function SignUp() {
 
   return (
     <>
-      <div style={{display:'flex',alignItems:'center',height:'100vh',backgroundColor:'#101826'}}>
+      <div style={{display:'flex',alignItems:'center',minHeight:'100vh',backgroundColor:'#101826'}}>
         <Container maxWidth='sm' style={{padding:'10px'}}>
           <Card sx={{backgroundColor:'#1D2936',color:'white'}}>
             <CardContent>
@@ -102,4 +102,4 @@ function App() {
   )
 }
 
-export default App;
+export default SignUp;

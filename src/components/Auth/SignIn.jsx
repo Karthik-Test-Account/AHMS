@@ -12,6 +12,7 @@ import {
     CardContent,
   } from "@mui/material";
   import { useState } from "react";
+  import { NavLink } from "react-router-dom";
   
   const SignIn = (props) => {
     const [inputs, setInput] = useState({
@@ -112,9 +113,9 @@ import {
                           </Link>
                         </Grid>
                         <Grid item>
-                          <Link href="#" variant="body2">
+                          <NavLink to="/signup" variant="body2" style={{color:'#1976D2'}}>
                             Don`t have an account? Sign up
-                          </Link>
+                          </NavLink>
                         </Grid>
                       </Grid>
                     </Grid>

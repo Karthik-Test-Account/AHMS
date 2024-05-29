@@ -3,7 +3,7 @@ import Header from './components/Header/Header'
 import Sidebar from './components/Sidebar/Sidebar'
 import { Outlet } from 'react-router-dom'
 
-function Layout() {
+function StudentLayout() {
   return (
     <>
         <Header/>
@@ -13,4 +13,4 @@ function Layout() {
   )
 }
 
-export default Layout
+export default StudentLayout

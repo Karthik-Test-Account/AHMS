@@ -10,6 +10,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Box, Stack } from "@mui/system";
 import MenuIcon from "@mui/icons-material/Menu";
 import { MenuItem } from "@mui/material";
+import { NavLink } from 'react-router-dom';
 function LandingPageHeader() {
     const [open, setOpen] = useState(false);
 
@@ -67,8 +68,12 @@ function LandingPageHeader() {
                 <Button color="inherit">About</Button>
                 <Button color="inherit">Request</Button>
                 <Button color="inherit">Contact</Button>
-                <Button color="inherit">AdminLogin</Button>
-                <Button variant="contained">Login</Button>
+                <Button color="inherit">
+                  <NavLink to="/adminlogin" style={{textDecoration:'none',color:'white'}}>Admin Login</NavLink>
+                </Button>
+                <Button variant="contained">
+                  <NavLink to="/login" style={{textDecoration:'none'}}>Login</NavLink>
+                </Button>
               </Stack>
 
               {/* toggle menu bar */}
