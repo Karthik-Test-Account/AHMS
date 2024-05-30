@@ -1,5 +1,6 @@
 import React from 'react'
 import {Container,Button,Typography} from '@mui/material'
+import { NavLink } from 'react-router-dom'
 function LandingPageBody(props) {
  
   return (
@@ -40,13 +41,15 @@ function LandingPageBody(props) {
                 sx={{ width: "25%", marginTop: "40px" }}
                 onClick={props.toggleClick}
               >
-                Login
+                <NavLink to="/login" style={{textDecoration:'none'}}>Login</NavLink>
               </Button>
               <Typography variant="body1" color="white">
                 OR
               </Typography>
               <Button variant="text" sx={{ color: "white", width: "25%", }}>
-                Register
+                <NavLink to="/signup" variant="body2" style={{color:'#1976D2',textDecoration:'none'}}>
+                    Register
+                </NavLink>
               </Button>
               {/* </div> */}
             </div>

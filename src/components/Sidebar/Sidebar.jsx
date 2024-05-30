@@ -6,7 +6,9 @@ import SidebarItems from '../Sidebar/SidebarItems/SidebarItems';
 
 const drawerWidth = 240;
 
-function Sidebar() {
+function Sidebar(props) {
+  console.log("Sidebar props.userMenu:", props.userMenu);
+
   return (
     <Box sx={{ display: 'flex' }}>
       <SideBarText />
@@ -27,7 +29,7 @@ function Sidebar() {
         anchor="left"
       >
         <Toolbar />
-        <SidebarItems />
+        <SidebarItems userMenu={props.userMenu}/>
       </Drawer>
     </Box>
   );
