@@ -10,6 +10,10 @@ import Invoices from "./components/Student Dashboard/Invoices/Invoices.jsx";
 import MessOff from "./components/Student Dashboard/MessOff/MessOff.jsx";
 import Suggestions from "./components/Student Dashboard/Suggestions/Suggestions.jsx";
 
+import AdminLayout from "./AdminLayout.jsx";
+import AdminHome from "./components/Admin Dashboard/AdminHome/AdminHome.jsx";
+import AdminMess from "./components/Admin Dashboard/AdminMess/AdminMess.jsx";
+
 const router=createBrowserRouter(
     createRoutesFromElements(
         <>
@@ -24,6 +28,10 @@ const router=createBrowserRouter(
                 <Route path='suggestions' element={<Suggestions/>}/>
                 <Route path='invoices' element={<Invoices/>}/>
                 <Route path='messoff' element={<MessOff/>}/>
+            </Route>
+            <Route path="admin" element={<AdminLayout/>}>
+                <Route index element={<AdminHome/>}/>
+                <Route path="mess" element={<AdminMess/>}/>
             </Route>
         </>
     )
