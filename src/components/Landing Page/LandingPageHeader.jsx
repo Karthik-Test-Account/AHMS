@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import {useState} from 'react'
 import AppBar from "@mui/material/AppBar";
 import Drawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
@@ -10,7 +10,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Box, Stack } from "@mui/system";
 import MenuIcon from "@mui/icons-material/Menu";
 import { MenuItem } from "@mui/material";
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 function LandingPageHeader() {
     const [open, setOpen] = useState(false);
 
@@ -27,7 +27,7 @@ function LandingPageHeader() {
             mt: 2,
           }}
         >
-          <Container maxWidth="lg">
+          <Container maxWidth="lg" >
             <Toolbar
               sx={(theme) => ({
                 display: "flex",
@@ -127,22 +127,30 @@ function LandingPageHeader() {
                       {/* <MenuItem onClick={toggleDrawer(false)}>Login</MenuItem> */}
                       </Box>
                       <Box>
-                      <MenuItem sx={{ width: "100%" }}>
+                      <MenuItem sx={{ width: "100%" }} onClick={toggleDrawer(false)}>
                         <Button
                           color="primary"
                           variant="contained"
                           fullWidth
                         >
+                       
+                        <NavLink to="/adminlogin" style={{width:"100%",textDecoration:"none",color:"white"}}>
+
                           Admin Login
+                        </NavLink>
+
                         </Button>
                       </MenuItem>
-                      <MenuItem sx={{ width: "100%" }}>
+                      <MenuItem sx={{ width: "100%" }} onClick={toggleDrawer(false)}>
+                        
                         <Button
                           color="primary"
                           variant="outlined"
                           fullWidth
                         >
+                        <NavLink to="/login" style={{width:"100%",textDecoration:"none",color:"white"}}>
                           Login
+                        </NavLink>
                         </Button>
                       </MenuItem>
                       </Box>

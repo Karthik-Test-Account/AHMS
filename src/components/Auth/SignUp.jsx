@@ -1,45 +1,92 @@
-import React from "react"
-import {Card, CardContent, Container, FormControlLabel, Grid, TextField, Typography,Checkbox, Button} from '@mui/material'
+import React from "react";
+import {
+  Card,
+  CardContent,
+  Container,
+  FormControlLabel,
+  Grid,
+  TextField,
+  Typography,
+  Checkbox,
+  Button,
+} from "@mui/material";
+import { NavLink } from "react-router-dom";
 function SignUp() {
-
   return (
     <>
-      <div style={{display:'flex',alignItems:'center',minHeight:'100vh',backgroundColor:'#101826'}}>
-        <Container maxWidth='sm' style={{padding:'10px'}}>
-          <Card sx={{backgroundColor:'#1D2936',color:'white'}}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          minHeight: "100vh",
+          backgroundColor: "#101826",
+
+        }}
+      >
+        <Container maxWidth="sm" sx={{ overflowY:"hidden",marginTop:"100px"}}>
+          <Card
+            sx={{
+              backgroundColor: "#1D2936",
+              color: "white",
+              
+            }}
+          >
             <CardContent>
-              <Grid container spacing={2} style={{display:'flex',flexDirection:'column'}}>
+              <Grid
+                container
+                spacing={2}
+                style={{ display: "flex", flexDirection: "column" ,}}
+              >
                 <Grid item>
-                  <Typography variant="h4" style={{fontWeight:'bold'}}>
+                  <Typography variant="h4" style={{ fontWeight: "bold" }}>
                     Sign Up
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Typography variant="body1" style={{fontWeight:'bolder',color:'slategray',fontSize:'14px'}}>
+                  <Typography
+                    variant="body1"
+                    style={{
+                      fontWeight: "bolder",
+                      color: "slategray",
+                      fontSize: "14px",
+                    }}
+                  >
                     Please fill in this form to create an account!
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Grid container style={{display:'flex',justifyContent:'space-between',alignItems:'center'}} spacing={2}>
+                  <Grid
+                    container
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                    spacing={2}
+                  >
                     <Grid item xs={12} sm={6}>
-                      <TextField 
-                      variant="outlined"
-                      placeholder="First Name"
-                      fullWidth
-                      sx={{backgroundColor: '#374151',input:{color:'white'}}}
-                      InputLabelProps={{style: { color: 'white' }}}
-                      >
-                      </TextField>
+                      <TextField
+                        variant="outlined"
+                        placeholder="First Name"
+                        fullWidth
+                        sx={{
+                          backgroundColor: "#374151",
+                          input: { color: "white" },
+                        }}
+                        InputLabelProps={{ style: { color: "white" } }}
+                      ></TextField>
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                      <TextField 
-                      variant="outlined"
-                      placeholder="Last Name"
-                      fullWidth
-                      sx={{backgroundColor: '#374151',input:{color:'white'}}}
-                      InputLabelProps={{style: { color: 'white' }}}
-                      >
-                      </TextField>
+                      <TextField
+                        variant="outlined"
+                        placeholder="Last Name"
+                        fullWidth
+                        sx={{
+                          backgroundColor: "#374151",
+                          input: { color: "white" },
+                        }}
+                        InputLabelProps={{ style: { color: "white" } }}
+                      ></TextField>
                     </Grid>
                   </Grid>
                 </Grid>
@@ -48,42 +95,56 @@ function SignUp() {
                     placeholder="Email"
                     fullWidth
                     variant="outlined"
-                    sx={{backgroundColor: '#374151',input:{color:'white'}}}
-                    InputLabelProps={{style: { color: 'white' }}}
-                  >
-                  </TextField>
+                    sx={{
+                      backgroundColor: "#374151",
+                      input: { color: "white" },
+                    }}
+                    InputLabelProps={{ style: { color: "white" } }}
+                  ></TextField>
                 </Grid>
                 <Grid item>
                   <TextField
                     placeholder="Password"
                     fullWidth
                     variant="outlined"
-                    sx={{backgroundColor: '#374151',input:{color:'white'}}}
-                    InputLabelProps={{style: { color: 'white' }}}
-                  >
-                  </TextField>
+                    sx={{
+                        backgroundColor: "#374151",
+                      input: { color: "white" },
+                    }}
+                    InputLabelProps={{ style: { color: "white" } }}
+                  ></TextField>
                 </Grid>
                 <Grid item>
                   <TextField
                     placeholder="Confirm Password"
                     fullWidth
                     variant="outlined"
-                    sx={{backgroundColor: '#374151',input:{color:'white'}}}
-                    InputLabelProps={{style: { color: 'white' }}}
-                  >
-                  </TextField>
+                    sx={{
+                      backgroundColor: "#374151",
+                      input: { color: "white" },
+                    }}
+                    InputLabelProps={{ style: { color: "white" } }}
+                  ></TextField>
                 </Grid>
                 <Grid item>
-                  <FormControlLabel 
-                    control={<Checkbox  color="primary"/>}  
-                    label="Remember me" 
+                  <FormControlLabel
+                    control={<Checkbox color="primary" />}
+                    label="Remember me"
                   />
                 </Grid>
                 <Grid item>
-                  <Grid container style={{display:'flex',justifyContent:'space-between',alignItems:'center'}} spacing={2}>
+                  <Grid
+                    container
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                    spacing={2}
+                  >
                     <Grid item xs={12} sm={6}>
                       <Button variant="contained" fullWidth color="primary">
-                      Sign Up
+                        Sign Up
                       </Button>
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -92,6 +153,15 @@ function SignUp() {
                       </Button>
                     </Grid>
                   </Grid>
+                  <Grid item sx={{ marginTop: "10px" }}>
+                    <NavLink
+                      to="/login"
+                      variant="body2"
+                      style={{ color: "#1976D2" }}
+                    >
+                      Already have an account? Sign In
+                    </NavLink>
+                  </Grid>
                 </Grid>
               </Grid>
             </CardContent>
@@ -99,7 +169,7 @@ function SignUp() {
         </Container>
       </div>
     </>
-  )
+  );
 }
 
 export default SignUp;
