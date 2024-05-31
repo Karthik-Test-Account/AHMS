@@ -37,7 +37,8 @@ function LandingPageBody(props) {
               {/* <div style={{border:"2px solid black",width:"100%",display:"flex",justifyContent:"center",flexDirection:"column"}}> */}
               <Button
                 variant="contained"
-                sx={{ width: "25%", marginTop: "40px" }}
+                size='large'
+                sx={{ width: {xs:"50%",md:"30%"}, marginTop: "40px" }}
                 onClick={props.toggleClick}
               >
                 Login
@@ -45,7 +46,7 @@ function LandingPageBody(props) {
               <Typography variant="body1" color="white">
                 OR
               </Typography>
-              <Button variant="text" sx={{ color: "white", width: "25%", }}>
+              <Button variant="outlined" size='large' sx={{ color: "white", width:{xs:"50%",md:"30%"} , }}>
                 Register
               </Button>
               {/* </div> */}

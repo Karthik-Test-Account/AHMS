@@ -49,9 +49,10 @@ function LandingPageHeader() {
               })}
               variant="regular"
             >
-              <div style={{ display: "flex", alignItems: "center" }}>
+              <div style={{ display: "flex", alignItems: "center" }} >
                 <IconButton color="primary" aria-label="home">
-                  <HomeIcon />
+                  
+                  <NavLink to="/" style={{color:"#1976D2"}} > <HomeIcon /> </NavLink>
                 </IconButton>
                 <Typography variant="h6" noWrap component="div" color="inherit">
                   Illuminati
@@ -72,7 +73,7 @@ function LandingPageHeader() {
                   <NavLink to="/adminlogin" style={{textDecoration:'none',color:'white'}}>Admin Login</NavLink>
                 </Button>
                 <Button variant="contained">
-                  <NavLink to="/login" style={{textDecoration:'none'}}>Login</NavLink>
+                  <NavLink to="/login" style={{textDecoration:'none',color:"white"}}>Login</NavLink>
                 </Button>
               </Stack>
 
@@ -99,49 +100,54 @@ function LandingPageHeader() {
                       p: 2,
                       backgroundColor: "#121212",
                       flexGrow: 1,
+                      
+
                     }}
                   >
+               
                     <Box
                       sx={{
                         display: "flex",
                         flexDirection: "column",
-                        alignItems: "center",
+                        alignItems: "start",
                         color: "white",
                         flexGrow: 1,
                       }}
                     >
                       <MenuItem onClick={toggleDrawer(false)}>
-                        Features
+                        About
                       </MenuItem>
                       <MenuItem onClick={toggleDrawer(false)}>
-                        Testimonials
+                        Request
                       </MenuItem>
                       <MenuItem onClick={toggleDrawer(false)}>
-                        Highlights
+                        Contact
                       </MenuItem>
-                      <MenuItem onClick={toggleDrawer(false)}>Pricing</MenuItem>
-                      <MenuItem onClick={toggleDrawer(false)}>FAQ</MenuItem>
-
-                      <MenuItem>
+                      {/* <MenuItem onClick={toggleDrawer(false)}>Admin Login</MenuItem> */}
+                      {/* <MenuItem onClick={toggleDrawer(false)}>Login</MenuItem> */}
+                      </Box>
+                      <Box>
+                      <MenuItem sx={{ width: "100%" }}>
                         <Button
                           color="primary"
                           variant="contained"
-                          sx={{ width: "100%" }}
+                          fullWidth
                         >
-                          Sign up
+                          Admin Login
                         </Button>
                       </MenuItem>
-                      <MenuItem>
+                      <MenuItem sx={{ width: "100%" }}>
                         <Button
                           color="primary"
                           variant="outlined"
-                          sx={{ width: "100%" }}
+                          fullWidth
                         >
-                          Sign in
+                          Login
                         </Button>
                       </MenuItem>
+                      </Box>
                     </Box>
-                  </Box>
+                    
                 </Drawer>
               </Box>
             </Toolbar>
