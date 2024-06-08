@@ -42,7 +42,7 @@ function LandingPageBody(props) {
                 sx={{ width: {xs:"50%",md:"30%"}, marginTop: "40px" }}
                 onClick={props.toggleClick}
               >
-                <NavLink to="/login" style={{textDecoration:'none',color:"white"}}>Login</NavLink>
+                <NavLink to="/login" style={{textDecoration:'none',color:"white",width:'100%'}}>Login</NavLink>
               </Button>
               <Typography variant="body1" color="white">
                 OR

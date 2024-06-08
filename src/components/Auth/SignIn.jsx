@@ -102,6 +102,11 @@ import {
                       </Button>
                     </Grid>
                     <Grid item>
+                      <Button variant="contained" fullWidth color="primary">
+                        Sign in with Google
+                      </Button>
+                    </Grid>
+                    <Grid item>
                       <Grid
                         container
                         sx={{ display: "flex", justifyContent: "space-between" }}
