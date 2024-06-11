@@ -1,19 +1,9 @@
 import React,{useState} from "react";
-import {
-  Card,
-  CardContent,
-  Container,
-  FormControlLabel,
-  Grid,
-  TextField,
-  Typography,
-  Checkbox,
-  Button,
-} from "@mui/material";
+import {Card,CardContent,Container,FormControlLabel,Grid,TextField,Typography,Checkbox,Button} from "@mui/material";
 import { NavLink } from "react-router-dom";
-import { app } from "../../firebaseConfig";
 import { getAuth,createUserWithEmailAndPassword } from "firebase/auth";
-
+import {db} from '../../firebaseConfig'
+import {doc,setDoc} from 'firebase/firestore'
 function SignUp() {
   const [inputs, setInput] = useState({
     firstName:"",
@@ -29,7 +19,7 @@ function SignUp() {
       [e.target.name]: e.target.value,
     }))
   };
-  const handleSignUp=(e)=>{
+  const handleSignUp= async (e)=>{
     e.preventDefault();
     if(inputs.firstName==='' || inputs.lastName==='' || inputs.password==="" || inputs.confirmPassword==="" || inputs.email===""){
       alert("fill all the details");
@@ -39,15 +29,23 @@ function SignUp() {
       alert("Password not matching");return;
     }
     const auth = getAuth();
-    createUserWithEmailAndPassword(auth,inputs.email,inputs.password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        alert("user created");
-        console.log(user);
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
+    try {
+      const userCredential=await createUserWithEmailAndPassword(auth,inputs.email,inputs.password);
+      const user= userCredential.user;
+      //adding user to database
+      await setDoc(doc(db,"students",user.uid),{
+        firstName:inputs.firstName,
+        lastName:inputs.lastName,
+        email:inputs.email,
+        password:inputs.password
+        })
+      alert("user created and stored in firestore");
+      console.log(user);
+
+    } catch (error) {
+      alert(error.message);
+    }
+    setInput({firstName:'',lastName:'',email:'',password:'',confirmPassword:''})
   }
 
   return (
