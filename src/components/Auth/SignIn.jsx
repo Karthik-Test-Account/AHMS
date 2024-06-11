@@ -2,7 +2,7 @@
 import {TextField,Button,Grid,Typography,Container,Checkbox,FormControlLabel,Link,Card,CardContent} from "@mui/material";
 import { useState } from "react";
 import { NavLink,useNavigate } from "react-router-dom";
-import {getAuth,signInWithEmailAndPassword} from 'firebase/auth'
+import {getAuth,signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup} from 'firebase/auth'
 import {db} from '../../firebaseConfig'
 import { collection, getDocs, query, where } from "firebase/firestore";
 
@@ -46,8 +46,26 @@ const SignIn = (props) => {
       }
       setInput({email:'',password:''})
   }
-  const handleSingInWithGoogle=()=>{
-    
+  const handleSingInWithGoogle=async ()=>{
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log("User UID:", user.uid);
+      console.log("User email:", user.email);
+      const collectionName = props.title === "Manager" ? "admins" : "students";
+      const q = query(collection(db, collectionName), where("email", "==", user.email));
+      const querySnapShot = await getDocs(q);
+      console.log(querySnapShot.size);
+      if (!querySnapShot.empty) {
+        props.title === "Manager" ? navigate("/admin") : navigate("/student");
+      } else {
+        alert("User not found");
+      }
+    } catch (err) {
+      alert(err.message);
+    }
   }
     return (
       <>
