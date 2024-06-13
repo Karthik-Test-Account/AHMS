@@ -1,6 +1,8 @@
 import React from 'react';
 import { Box, Grid, Toolbar, Typography, FormControl, MenuItem, Select, TextField, Button } from '@mui/material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import DoneIcon from '@mui/icons-material/Done';
+import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
 
 const drawerWidth = 240;
 const headerHeight = 50;
@@ -18,19 +20,18 @@ function Complaints() {
                 padding: '15px', marginTop: `${headerHeight}px`, '@media (min-width:600px)': { marginLeft: `${drawerWidth}px ` }
             }}>
                 <Toolbar />
-
-                <Grid container sx={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', gap: '10px' }}>
+                <Grid container sx={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row', gap: '10px' }}>
                     <Grid item>
                         <Typography variant='h4' sx={{ fontWeight: 'bold', color: 'white' }}>
                             Complaints
                         </Typography>
                     </Grid>
-                    <Grid item sx={{ width: '70%', height: '70%', '@media (max-width:1085px)': { height: '60%', width: '90%' } }}>
-                        <Grid container sx={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'column', color: 'white', gap: '5%' }}>
-                            <Grid item sx={{ height: { lg: '100%', md: 'auto', sm: 'auto', xs: 'auto' }, width: { lg: '45%', md: '100%', sm: '100%', xs: '100%' }, backgroundColor: 'black', borderRadius: '7px' }}>
-                                <Grid container gap={2} p={2} sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <Grid item sx={{ width: '100%', height: '100%' }}>
+                        <Grid container sx={{ width: '70%', height: '70%', display: 'flex', justifyContent: 'column', color: 'white', gap: '5%', marginLeft: '17%' }}>
+                            <Grid item sx={{ height: { lg: '100%', md: 'auto', sm: 'auto', xs: 'auto' }, width: { lg: '45%', md: '100%', sm: '100%', xs: '100%' }, backgroundColor: 'black', borderRadius: '7px', '@media (max-width:1136px)': { width: '75%', marginLeft: '50px' } }}>
+                                <Grid container gap={2} p={2} sx={{ display: 'flex', flexDirection: 'column', '@media (max-width:1136px)': { height: '100%', gap: '2px' } }}>
                                     <Grid item>
-                                        <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
+                                        <Typography variant='h6' sx={{ fontWeight: 'bold', '@media (max-width:1136px)': { fontSize: '15px' } }}>
                                             Your complaint type
                                         </Typography>
                                     </Grid>
@@ -40,7 +41,9 @@ function Complaints() {
                                                 value={age}
                                                 onChange={handleChange}
                                                 displayEmpty
+                                                size="small"
                                                 inputProps={{ 'aria-label': 'Without label' }}
+                                                sx={{ '@media (max-width:1136px)': { fontSize: '12px', padding: '1px' } }}
                                             >
                                                 <MenuItem value="">
                                                     <em>Electric</em>
@@ -53,19 +56,20 @@ function Complaints() {
                                         </FormControl>
                                     </Grid>
                                     <Grid item >
-                                        <Typography variant='h6' sx={{ fontWeight: 'bold' }}>Your Complaint Title</Typography>
+                                        <Typography variant='h6' sx={{ fontWeight: 'bold', '@media (max-width:1136px)': { fontSize: '15px' } }}>Your Complaint Title</Typography>
                                     </Grid>
-                                    <Grid item>
+                                    <Grid item sx={{}}>
                                         <TextField
                                             id="filled-basic"
                                             label="Title"
                                             variant="filled"
+                                            size="small"
                                             fullWidth
                                             sx={{ backgroundColor: 'white', borderRadius: '4px' }}
                                         />
                                     </Grid>
                                     <Grid item >
-                                        <Typography variant='h6' sx={{ fontWeight: 'bold' }}>Your Complaint description</Typography>
+                                        <Typography variant='h6' sx={{ fontWeight: 'bold', '@media (max-width:1136px)': { fontSize: '15px' } }}>Your Complaint description</Typography>
                                     </Grid>
                                     <Grid item >
                                         <TextField
@@ -73,21 +77,66 @@ function Complaints() {
                                             label="Details of complaint..."
                                             variant="filled"
                                             fullWidth
+                                            size="small"
                                             multiline
                                             sx={{ backgroundColor: 'white', borderRadius: '4px' }}
                                         />
                                     </Grid>
-                                    <Grid item>
-                                        <Button variant="contained" fullWidth sx={{ height: '50px', marginTop: '10px' }}>Make Suggestion</Button>
+                                    <Grid item sx={{}}>
+                                        <Button variant="contained" fullWidth sx={{ height: '50px', marginTop: '10px', '@media (max-width:1136px)': { height: '30px', fontSize: '10px' } }}>Make Suggestion</Button>
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <Grid item sx={{ height: { lg: '100%', md: 'auto', sm: 'auto', xs: 'auto' }, width: { lg: '45%', md: '100%', sm: '100%', xs: '100%' }, backgroundColor: 'black', borderRadius: '7px' }}>
-                                <Grid container gap={2} p={2} sx={{ display: 'flex', flexDirection: 'column' }}>
+                            <Grid item sx={{ height: { lg: '100%', md: 'auto', sm: 'auto', xs: 'auto' }, width: { lg: '45%', md: '100%', sm: '100%', xs: '100%' }, backgroundColor: 'black', borderRadius: '7px', '@media (max-width:1136px)': { width: '75%', marginLeft: '50px' } }}>
+                                <Grid container gap={2} p={2} sx={{ display: 'flex', flexDirection: 'column', gap: '30px', '@media (max-width:1136px)': { height: '100%', gap: '1.5px' } }}>
                                     <Grid item>
-                                        <Typography variant='h5' sx={{ fontWeight: 'bold' }}>
+                                        <Typography variant='h5' sx={{ fontWeight: 'bold', '@media (max-width:1136px)': { fontSize: '15px' } }}>
                                             Registered Complaints
                                         </Typography>
+                                    </Grid>
+                                    <Grid container sx={{ display: 'flex', flexDirection: 'column' }}>
+                                        <Grid container sx={{ display: 'flex', flexDirection: 'column', }}>
+                                            <Grid conatiner sx={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
+                                                <Grid item >
+                                                    <DoneIcon sx={{ fontSize: '30px', '@media (max-width:1136px)': { fontSize: '20px' } }} />
+                                                </Grid>
+                                                <Grid item>
+                                                    <Typography variant='body1' sx={{ '@media (max-width:1136px)': { fontSize: '15px' } }}>AC</Typography>
+                                                </Grid>
+                                                <Grid container sx={{ display: 'flex', justifyContent: 'end' }}>
+                                                    <Typography variant='body1' sx={{ '@media (max-width:1136px)': { fontSize: '14px' } }}>Electric</Typography>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid item sx={{ marginLeft: '50px', marginTop: '-20px', '@media (max-width:1136px)': { marginLeft: '40px', marginTop: '-10px' } }}>
+                                                <Typography variant='caption' sx={{ color: 'gray', '@media (max-width:1136px)': { fontSize: '10px' } }}>May 20,2023</Typography>
+                                            </Grid>
+                                        </Grid>
+                                        <Grid item sx={{ margin: '30px', '@media (max-width:1136px)': { margin: '10px' } }}>
+                                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                                <Box sx={{ borderBottom: '1px solid', width: '100%', color: 'gray' }} />
+                                            </Box>
+                                        </Grid>
+                                        <Grid container sx={{ display: 'flex', flexDirection: 'column' }}>
+                                            <Grid conatiner sx={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
+                                                <Grid item >
+                                                    <DoneIcon sx={{ fontSize: '30px', '@media (max-width:1136px)': { fontSize: '20px' } }} />
+                                                </Grid>
+                                                <Grid item>
+                                                    <Typography variant='body1' sx={{ '@media (max-width:1136px)': { fontSize: '15px' } }}>AC</Typography>
+                                                </Grid>
+                                                <Grid container sx={{ display: 'flex', justifyContent: 'end' }}>
+                                                    <Typography variant='body1' sx={{ '@media (max-width:1136px)': { fontSize: '14px' } }}>Electric</Typography>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid item sx={{ marginLeft: '50px', marginTop: '-20px', '@media (max-width:1136px)': { marginLeft: '40px', marginTop: '-10px' } }}>
+                                                <Typography variant='caption' sx={{ color: 'gray', '@media (max-width:1136px)': { fontSize: '10px' } }}>May 20,2023</Typography>
+                                            </Grid>
+                                        </Grid>
+                                        <Grid item sx={{ margin: '30px', '@media (max-width:1136px)': { margin: '10px' } }}>
+                                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                                <Box sx={{ borderBottom: '1px solid', width: '100%', color: 'gray' }} />
+                                            </Box>
+                                        </Grid>
                                     </Grid>
                                 </Grid>
                             </Grid>

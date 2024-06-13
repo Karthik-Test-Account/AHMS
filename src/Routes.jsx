@@ -15,6 +15,10 @@ import Complaints from "./components/Student Dashboard/complaints/complaints.jsx
 import AdminLayout from "./AdminLayout.jsx";
 import AdminHome from "./components/Admin Dashboard/AdminHome/AdminHome.jsx";
 import AdminMess from "./components/Admin Dashboard/AdminMess/AdminMess.jsx";
+import RegisterStudent from "./components/Admin Dashboard/RegisterStudent/RegisterStudent.jsx";
+import AdminSuggestions from "./components/Admin Dashboard/AdminSuggestions/AdminSuggestions.jsx";
+import Admincomplaints from "./components/Admin Dashboard/AdminComplaints/AdminComplaints.jsx";
+import AdminAllStudents from "./components/Admin Dashboard/AdminAllStudents/AdminAllStudents.jsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -36,6 +40,10 @@ const router = createBrowserRouter(
             <Route path="admin" element={<AdminLayout />}>
                 <Route index element={<AdminHome />} />
                 <Route path="mess" element={<AdminMess />} />
+                <Route path="registerstudent" element={<RegisterStudent />} />
+                <Route path="suggestions" element={<AdminSuggestions />} />
+                <Route path="complaints" element={<Admincomplaints />} />
+                <Route path="allstudents" element={<AdminAllStudents />} />
             </Route>
         </>
     )
