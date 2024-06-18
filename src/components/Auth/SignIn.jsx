@@ -1,20 +1,13 @@
 
-import {
-    TextField,
-    Button,
-    Grid,
-    Typography,
-    Container,
-    Checkbox,
-    FormControlLabel,
-    Link,
-    Card,
-    CardContent,
-  } from "@mui/material";
-  import { useState } from "react";
-  import { NavLink } from "react-router-dom";
-  
-  const SignIn = (props) => {
+import {TextField,Button,Grid,Typography,Container,Checkbox,FormControlLabel,Link,Card,CardContent} from "@mui/material";
+import { useState } from "react";
+import { NavLink,useNavigate } from "react-router-dom";
+import {getAuth,signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup} from 'firebase/auth'
+import {db} from '../../firebaseConfig'
+import { collection, getDocs, query, where } from "firebase/firestore";
+
+const SignIn = (props) => {
+    const navigate=useNavigate();
     const [inputs, setInput] = useState({
       email: "",
       password: "",
@@ -25,9 +18,54 @@ import {
         [e.target.name]: e.target.value,
       }))
     };
-  const handleSubmit=(e)=>{
-    e.preventDefault()
-    console.log(inputs)
+
+    const handleSubmit= async (e)=>{
+      e.preventDefault()
+      if(inputs.email==='' || inputs.password===''){
+        alert("fill all the details");
+        return;
+      }
+      const auth=getAuth();
+      try {
+        const userCredential= await signInWithEmailAndPassword(auth,inputs.email,inputs.password);
+        const user=userCredential.user;
+        console.log("User UID:", user.uid);
+        console.log("User mail:",user.email);
+        const collectionName=props.title==="Manager"?"admins":"students";
+        console.log(collectionName);
+        const q=query(collection(db,collectionName),where("email","==",user.email));
+        const querySnapShot=await getDocs(q);
+        console.log(querySnapShot.size);
+        if(!querySnapShot.empty){
+          props.title==="Manager"?navigate("/admin"):navigate("/student");
+        }else{
+          alert("user not found");
+        }
+      } catch (err) {
+        alert(err.message);
+      }
+      setInput({email:'',password:''})
+  }
+  const handleSingInWithGoogle=async ()=>{
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log("User UID:", user.uid);
+      console.log("User email:", user.email);
+      const collectionName = props.title === "Manager" ? "admins" : "students";
+      const q = query(collection(db, collectionName), where("email", "==", user.email));
+      const querySnapShot = await getDocs(q);
+      console.log(querySnapShot.size);
+      if (!querySnapShot.empty) {
+        props.title === "Manager" ? navigate("/admin") : navigate("/student");
+      } else {
+        alert("User not found");
+      }
+    } catch (err) {
+      alert(err.message);
+    }
   }
     return (
       <>
@@ -99,6 +137,11 @@ import {
                     <Grid item>
                       <Button variant="contained" fullWidth onClick={handleSubmit} >
                         Sign in
+                      </Button>
+                    </Grid>
+                    <Grid item>
+                      <Button variant="contained" fullWidth color="primary" onClick={handleSingInWithGoogle}>
+                        Sign in with Google
                       </Button>
                     </Grid>
                     <Grid item>

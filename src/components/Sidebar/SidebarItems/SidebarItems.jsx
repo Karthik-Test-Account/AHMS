@@ -7,7 +7,7 @@ const SidebarItems = ({ onClick, userMenu = [] }) => {
 
   return (
     <>
-      {console.log("SidebarItems userMenu:", userMenu)}
+      {/* {console.log("SidebarItems userMenu:", userMenu)} */}
       <Divider sx={{ backgroundColor: 'white' }} />
       <List>
         {userMenu.map((navMenu) => (

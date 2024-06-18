@@ -1,17 +1,53 @@
-import React from "react";
-import {
-  Card,
-  CardContent,
-  Container,
-  FormControlLabel,
-  Grid,
-  TextField,
-  Typography,
-  Checkbox,
-  Button,
-} from "@mui/material";
+import React,{useState} from "react";
+import {Card,CardContent,Container,FormControlLabel,Grid,TextField,Typography,Checkbox,Button} from "@mui/material";
 import { NavLink } from "react-router-dom";
+import { getAuth,createUserWithEmailAndPassword } from "firebase/auth";
+import {db} from '../../firebaseConfig'
+import {doc,setDoc} from 'firebase/firestore'
 function SignUp() {
+  const [inputs, setInput] = useState({
+    firstName:"",
+    lastName:"",
+    email: "",
+    password: "",
+    confirmPassword:"",
+  });
+
+  const handleChange = (e) => {
+    setInput((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }))
+  };
+  const handleSignUp= async (e)=>{
+    e.preventDefault();
+    if(inputs.firstName==='' || inputs.lastName==='' || inputs.password==="" || inputs.confirmPassword==="" || inputs.email===""){
+      alert("fill all the details");
+      return;
+    }
+    if(inputs.password!==inputs.confirmPassword){
+      alert("Password not matching");return;
+    }
+    const auth = getAuth();
+    try {
+      const userCredential=await createUserWithEmailAndPassword(auth,inputs.email,inputs.password);
+      const user= userCredential.user;
+      //adding user to database
+      await setDoc(doc(db,"students",user.uid),{
+        firstName:inputs.firstName,
+        lastName:inputs.lastName,
+        email:inputs.email,
+        password:inputs.password
+        })
+      alert("user created and stored in firestore");
+      console.log(user);
+
+    } catch (error) {
+      alert(error.message);
+    }
+    setInput({firstName:'',lastName:'',email:'',password:'',confirmPassword:''})
+  }
+
   return (
     <>
       <div
@@ -68,6 +104,10 @@ function SignUp() {
                       <TextField
                         variant="outlined"
                         placeholder="First Name"
+                        name="firstName"
+                        required
+                        value={inputs.firstName}
+                        onChange={handleChange}
                         fullWidth
                         sx={{
                           backgroundColor: "#374151",
@@ -80,6 +120,10 @@ function SignUp() {
                       <TextField
                         variant="outlined"
                         placeholder="Last Name"
+                        name="lastName"
+                        required
+                        onChange={handleChange}
+                        value={inputs.lastName}
                         fullWidth
                         sx={{
                           backgroundColor: "#374151",
@@ -93,6 +137,11 @@ function SignUp() {
                 <Grid item>
                   <TextField
                     placeholder="Email"
+                    name="email"
+                        onChange={handleChange}
+                        value={inputs.email}
+                    type="email"
+                    required
                     fullWidth
                     variant="outlined"
                     sx={{
@@ -105,7 +154,12 @@ function SignUp() {
                 <Grid item>
                   <TextField
                     placeholder="Password"
+                    name="password"
+                        onChange={handleChange}
+                        value={inputs.password}
+                    type="password"
                     fullWidth
+                    required
                     variant="outlined"
                     sx={{
                         backgroundColor: "#374151",
@@ -118,6 +172,11 @@ function SignUp() {
                   <TextField
                     placeholder="Confirm Password"
                     fullWidth
+                    name="confirmPassword"
+                    required
+                    type="password"
+                        onChange={handleChange}
+                        value={inputs.confirmPassword}
                     variant="outlined"
                     sx={{
                       backgroundColor: "#374151",
@@ -142,14 +201,9 @@ function SignUp() {
                     }}
                     spacing={2}
                   >
-                    <Grid item xs={12} sm={6}>
-                      <Button variant="contained" fullWidth color="primary">
+                    <Grid item xs={12} sm={12}>
+                      <Button variant="contained" fullWidth color="primary" onClick={handleSignUp}>
                         Sign Up
-                      </Button>
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <Button variant="contained" fullWidth color="primary">
-                        Sign in with Google
                       </Button>
                     </Grid>
                   </Grid>
