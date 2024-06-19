@@ -1,86 +1,39 @@
-import {  Typography ,Box, Grid} from '@mui/material'
-import React from 'react'
+import { height, width } from '@fortawesome/free-regular-svg-icons/faAddressBook';
 import ConfirmationNumberOutlinedIcon from '@mui/icons-material/ConfirmationNumberOutlined';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 
-const headerHeight=50,drawerWidth=220;
-import { BarChart } from '@mui/x-charts/BarChart';
-import { axisClasses } from '@mui/x-charts/ChartsAxis';
-import { color } from 'chart.js/helpers';
-
-const chartSetting = {
-
-  width: 400,
-  height: 400,
-  sx: {
-    [`.${axisClasses.left} .${axisClasses.label}`]: {
-      transform: 'translate(-20px, 0)',
-      
-    },
-  },
-};
-const dataset = [
-  {
-    range: 59,
-    status: 'Accepted',
-  },
-  {
-    range: 20,
-    status: 'Rejected',
-  },
-  {
-    range: 47,
-    status: 'Unmarked',
-  },
-
-];
-
-const valueFormatter = (value) => `${value}mm`;
 
 
-function AdminMess() {
-  
+import {  Typography ,Box, Grid,Button} from '@mui/material'
+import React from 'react'
+const headerHeight=50,drawerWidth=240;
+
+function Adminvoice() {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Box component="main" sx={{
-        minHeight: '100vh', height: 'auto', backgroundColor: '#DDDDDD', display: 'flex', justifyContent: 'center', alignItems:'start',
-        padding: '0', marginTop: `${headerHeight}px`, '@media (min-width:600px)': { marginLeft: `${drawerWidth}px` }
+        minHeight: '100vh', height: 'auto', backgroundColor: '#1B1918', display: 'flex', justifyContent: 'center', alignItems:'start',
+        padding: '0', marginTop: `${headerHeight}px`, '@media (min-width:700px)': { marginLeft: `${drawerWidth}px` }
       }}>
-        
-        
-
-        
-        <Grid item alignItems='center'sx={{width:'100%',display:'flex',flexDirection:'column'}}>
-
-
-          
-              <Grid item sx={{marginTop:'50px',marginRight:'30px'}}>
-                <Typography variant='h4' align='center'color='black' fontWeight='bold'fontSize='2.5rem' fontFamily='"Gill Sans", sans-serif'>Manage Mess</Typography>
-              </Grid>
             
-             <Grid item sx={{marginTop:'40px','@media (max-width:980px)': { width: '100%' }}}>
-                <Grid container>
-                <BarChart
-                 dataset={dataset}
-                 series={[
-                   { dataKey: 'range', label: 'Request', valueFormatter },
-      
-                ]}
-                 {...chartSetting}
-                    
-                 
-                 />
+                  <Grid container direction="column" alignItems="center"gap={1.5}sx={{display:"flex",flexDirection:"column",marginTop:"5rem",width:"80%"}}> 
+                      <Grid item > I
 
-                </Grid>
-             </Grid>
-             <Grid item sx={{ width: '40%', height: 'auto',borderRadius:'7px', backgroundColor: 'black', '@media (max-width:980px)': { width: '85%' } }}>
-            <Grid container sx={{ width: '100%',borderRadius:'7px', height: '100%', backgroundColor: '#090909', padding: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'start', gap: '10px',overflowY:'auto' }}>
+
+                        <Typography variant='h4' align='center'color='whitesmoke' fontWeight='bold'fontSize='2.5rem' fontFamily='"Gill Sans", sans-serif'sx={{'@media (max-width:518px)': {fontSize:"1.5rem"}}}>Invoices</Typography>
+
+                      </Grid>
+                      <Grid item >
+                              <Button variant="contained" size='medium'sx={{'@media (max-width:518px)': {size:"small"}}}>Generate Invoices</Button>
+                      </Grid>
+                      <Grid item sx={{ width: '60%', height: 'auto',borderRadius:'10px', backgroundColor: 'black', '@media (max-width:980px)': { width: '100%' } }}>
+            <Grid container sx={{ width: '100%',borderRadius:'10px', height: '100%', backgroundColor: '#090909', padding: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'start', gap: '10px',overflowY:'auto' }}>
               <Grid item>
                 <Typography variant='h6' color='whitesmoke'>All Invoices</Typography>
               </Grid>
               <Grid item sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '6px' }}>
-                <Grid container sx={{ width: '50%', display: 'flex', justifyContent: 'start', alignItems: 'center', gap: '10px' }}>
+                <Grid container sx={{ width: '55%', display: 'flex', justifyContent: 'start', alignItems: 'center', gap: '10px' }}>
                   <Grid item>
                   <ConfirmationNumberOutlinedIcon fontSize='small' sx={{color:'whitesmoke'}}/>
                   </Grid>
@@ -95,9 +48,7 @@ function AdminMess() {
                   <Grid item>
                     <CheckCircleOutlineIcon fontSize='small' sx={{color:'whitesmoke'}}/>
                   </Grid>
-                  <Grid item>
-                    <CancelOutlinedIcon fontSize='small' sx={{color:'whitesmoke'}}/>
-                  </Grid>
+                  
                 </Grid>
               </Grid>
                  <hr></hr>
@@ -117,28 +68,43 @@ function AdminMess() {
                   <Grid item>
                     <CheckCircleOutlineIcon fontSize='small' sx={{color:'whitesmoke'}}/>
                   </Grid>
-                  <Grid item>
-                    <CancelOutlinedIcon fontSize='small' sx={{color:'whitesmoke'}}/>
-                  </Grid>
+                  
                 </Grid>
               </Grid>
             </Grid>
           </Grid>
+                    </Grid>
+                      
+         
 
-
-
-        </Grid>
+                      
                 
-                    
-      
-            
 
-                            
-      
+
+
+
+
+
+
+
+
+
+
+
+            
+         
+
+         
+  
+    
         
+         
+
+
       </Box>
     </div>
+    
   )
 }
 
-export default AdminMess
+export default Adminvoice

@@ -19,6 +19,7 @@ import RegisterStudent from "./components/Admin Dashboard/RegisterStudent/Regist
 import AdminSuggestions from "./components/Admin Dashboard/AdminSuggestions/AdminSuggestions.jsx";
 import Admincomplaints from "./components/Admin Dashboard/AdminComplaints/AdminComplaints.jsx";
 import AdminAllStudents from "./components/Admin Dashboard/AdminAllStudents/AdminAllStudents.jsx";
+import Adminvoice from  "./components/Admin Dashboard/Adminvoice/Adminvoice.jsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -44,6 +45,7 @@ const router = createBrowserRouter(
                 <Route path="suggestions" element={<AdminSuggestions />} />
                 <Route path="complaints" element={<Admincomplaints />} />
                 <Route path="allstudents" element={<AdminAllStudents />} />
+                <Route path="invoices" element={<Adminvoice />} />
             </Route>
         </>
     )
