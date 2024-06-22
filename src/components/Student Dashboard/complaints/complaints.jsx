@@ -27,11 +27,11 @@ function Complaints() {
                         </Typography>
                     </Grid>
                     <Grid item sx={{ width: '100%', height: '100%' }}>
-                        <Grid container sx={{ width: '70%', height: '70%', display: 'flex', justifyContent: 'column', color: 'white', gap: '5%', marginLeft: '17%' }}>
-                            <Grid item sx={{ height: { lg: '100%', md: 'auto', sm: 'auto', xs: 'auto' }, width: { lg: '45%', md: '100%', sm: '100%', xs: '100%' }, backgroundColor: 'black', borderRadius: '7px', '@media (max-width:1136px)': { width: '75%', marginLeft: '50px' } }}>
-                                <Grid container gap={2} p={2} sx={{ display: 'flex', flexDirection: 'column', '@media (max-width:1136px)': { height: '100%', gap: '2px' } }}>
+                        <Grid container sx={{ width: '70%', height: '50%', display: 'flex', justifyContent: 'column', color: 'white', gap: '5%', marginLeft: '17%' }}>
+                            <Grid item sx={{ height: { lg: 'auto', md: 'auto', sm: 'auto', xs: 'auto' }, width: { lg: '45%', md: '100%', sm: '100%', xs: '100%' }, padding: '30px', backgroundColor: 'black', overflow: 'auto', borderRadius: '7px', '@media (max-width:1136px)': { width: '100%', height: 'auto' } }}>
+                                <Grid container gap={2} p={2} sx={{ display: 'flex', flexDirection: 'column' }}>
                                     <Grid item>
-                                        <Typography variant='h6' sx={{ fontWeight: 'bold', '@media (max-width:1136px)': { fontSize: '15px' } }}>
+                                        <Typography variant='h6' sx={{ fontWeight: 'bold', }}>
                                             Your complaint type
                                         </Typography>
                                     </Grid>
@@ -43,7 +43,7 @@ function Complaints() {
                                                 displayEmpty
                                                 size="small"
                                                 inputProps={{ 'aria-label': 'Without label' }}
-                                                sx={{ '@media (max-width:1136px)': { fontSize: '12px', padding: '1px' } }}
+                                                sx={{}}
                                             >
                                                 <MenuItem value="">
                                                     <em>Electric</em>
@@ -56,7 +56,7 @@ function Complaints() {
                                         </FormControl>
                                     </Grid>
                                     <Grid item >
-                                        <Typography variant='h6' sx={{ fontWeight: 'bold', '@media (max-width:1136px)': { fontSize: '15px' } }}>Your Complaint Title</Typography>
+                                        <Typography variant='h6' sx={{ fontWeight: 'bold' }}>Your Complaint Title</Typography>
                                     </Grid>
                                     <Grid item sx={{}}>
                                         <TextField
@@ -69,7 +69,7 @@ function Complaints() {
                                         />
                                     </Grid>
                                     <Grid item >
-                                        <Typography variant='h6' sx={{ fontWeight: 'bold', '@media (max-width:1136px)': { fontSize: '15px' } }}>Your Complaint description</Typography>
+                                        <Typography variant='h6' sx={{ fontWeight: 'bold' }}>Your Complaint description</Typography>
                                     </Grid>
                                     <Grid item >
                                         <TextField
@@ -83,14 +83,14 @@ function Complaints() {
                                         />
                                     </Grid>
                                     <Grid item sx={{}}>
-                                        <Button variant="contained" fullWidth sx={{ height: '50px', marginTop: '10px', '@media (max-width:1136px)': { height: '30px', fontSize: '10px' } }}>Make Suggestion</Button>
+                                        <Button variant="contained" fullWidth sx={{ height: '50px', marginTop: '10px' }}>Make complaint</Button>
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <Grid item sx={{ height: { lg: '100%', md: 'auto', sm: 'auto', xs: 'auto' }, width: { lg: '45%', md: '100%', sm: '100%', xs: '100%' }, backgroundColor: 'black', borderRadius: '7px', '@media (max-width:1136px)': { width: '75%', marginLeft: '50px' } }}>
+                            <Grid item sx={{ height: { lg: 'auto', md: 'auto', sm: 'auto', xs: 'auto' }, width: { lg: '45%', md: '100%', sm: '100%', xs: '100%' }, padding: '30px', backgroundColor: 'black', borderRadius: '7px' }}>
                                 <Grid container gap={2} p={2} sx={{ display: 'flex', flexDirection: 'column', gap: '30px', '@media (max-width:1136px)': { height: '100%', gap: '1.5px' } }}>
                                     <Grid item>
-                                        <Typography variant='h5' sx={{ fontWeight: 'bold', '@media (max-width:1136px)': { fontSize: '15px' } }}>
+                                        <Typography variant='h5' sx={{ fontWeight: 'bold' }}>
                                             Registered Complaints
                                         </Typography>
                                     </Grid>
@@ -98,13 +98,13 @@ function Complaints() {
                                         <Grid container sx={{ display: 'flex', flexDirection: 'column', }}>
                                             <Grid conatiner sx={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
                                                 <Grid item >
-                                                    <DoneIcon sx={{ fontSize: '30px', '@media (max-width:1136px)': { fontSize: '20px' } }} />
+                                                    <DoneIcon sx={{ fontSize: '30px' }} />
                                                 </Grid>
                                                 <Grid item>
-                                                    <Typography variant='body1' sx={{ '@media (max-width:1136px)': { fontSize: '15px' } }}>AC</Typography>
+                                                    <Typography variant='body1' sx={{}}>AC</Typography>
                                                 </Grid>
                                                 <Grid container sx={{ display: 'flex', justifyContent: 'end' }}>
-                                                    <Typography variant='body1' sx={{ '@media (max-width:1136px)': { fontSize: '14px' } }}>Electric</Typography>
+                                                    <Typography variant='body1' sx={{}}>Electric</Typography>
                                                 </Grid>
                                             </Grid>
                                             <Grid item sx={{ marginLeft: '50px', marginTop: '-20px', '@media (max-width:1136px)': { marginLeft: '40px', marginTop: '-10px' } }}>
@@ -119,20 +119,20 @@ function Complaints() {
                                         <Grid container sx={{ display: 'flex', flexDirection: 'column' }}>
                                             <Grid conatiner sx={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
                                                 <Grid item >
-                                                    <DoneIcon sx={{ fontSize: '30px', '@media (max-width:1136px)': { fontSize: '20px' } }} />
+                                                    <DoneIcon sx={{ fontSize: '30px' }} />
                                                 </Grid>
                                                 <Grid item>
-                                                    <Typography variant='body1' sx={{ '@media (max-width:1136px)': { fontSize: '15px' } }}>AC</Typography>
+                                                    <Typography variant='body1' sx={{}}>AC</Typography>
                                                 </Grid>
                                                 <Grid container sx={{ display: 'flex', justifyContent: 'end' }}>
-                                                    <Typography variant='body1' sx={{ '@media (max-width:1136px)': { fontSize: '14px' } }}>Electric</Typography>
+                                                    <Typography variant='body1' sx={{}}>Electric</Typography>
                                                 </Grid>
                                             </Grid>
                                             <Grid item sx={{ marginLeft: '50px', marginTop: '-20px', '@media (max-width:1136px)': { marginLeft: '40px', marginTop: '-10px' } }}>
-                                                <Typography variant='caption' sx={{ color: 'gray', '@media (max-width:1136px)': { fontSize: '10px' } }}>May 20,2023</Typography>
+                                                <Typography variant='caption' sx={{ color: 'gray' }}>May 20,2023</Typography>
                                             </Grid>
                                         </Grid>
-                                        <Grid item sx={{ margin: '30px', '@media (max-width:1136px)': { margin: '10px' } }}>
+                                        <Grid item sx={{ margin: '30px' }}>
                                             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                                 <Box sx={{ borderBottom: '1px solid', width: '100%', color: 'gray' }} />
                                             </Box>
