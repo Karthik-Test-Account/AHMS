@@ -34,7 +34,7 @@ function complaints() {
                     container
                     gap={2}
                     sx={{
-                        width: "70%",
+                        width: "80%",
                         color: "white",
                         display: "flex",
                         flexDirection: "column",
@@ -42,6 +42,7 @@ function complaints() {
                         justifyContent: "start",
                     }}
                 >
+
                     <Grid item>
                         <Typography variant="h3" fontWeight={600} align="center">
                             Complaints
@@ -56,9 +57,8 @@ function complaints() {
                                 padding: "5px",
                                 display: "flex",
                                 alignItems: "center",
-                                justifyContent: "space-evenly",
                                 flexDirection: 'row',
-
+                                justifyContent: "space-evenly",
                                 "@media (max-width:1100px)": { flexDirection: "column" },
                             }}
                         >
@@ -66,94 +66,78 @@ function complaints() {
                                 item
                                 sx={{
                                     backgroundColor: "#080808",
-                                    width: "53%",
-                                    minHeight: "50vh",
-                                    padding: '10px',
+                                    width: "40%",
+                                    minHeight: "45vh",
                                     height: "auto",
+                                    padding: '20px',
                                     "@media (max-width:1100px)": { width: "100%" },
                                     borderRadius: "8px",
                                 }}
                             >
-                                <Grid
-                                    container
-                                    sx={{
-                                        width: "100%",
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        justifyContent: "start",
-                                        padding: "15px",
-                                        height: "45vh",
-                                        overflowY: "auto",
-                                        flexWrap: "revert",
-                                        "&::-webkit-scrollbar": { display: "none" },
-                                    }}
-                                >
-                                    <Grid item>
-                                        <Typography variant='h6' sx={{ fontWeight: 'bold', }}>
-                                            Your complaint type
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item>
-                                        <FormControl sx={{ backgroundColor: 'white', width: '100%' }}>
-                                            <Select
-                                                value={age}
-                                                onChange={handleChange}
-                                                displayEmpty
-                                                size="small"
-                                                inputProps={{ 'aria-label': 'Without label' }}
-                                                sx={{}}
-                                            >
-                                                <MenuItem value="">
-                                                    <em>Electric</em>
-                                                </MenuItem>
-                                                <MenuItem value={10}>Wash Rooms</MenuItem>
-                                                <MenuItem value={20}>Cleaning</MenuItem>
-                                                <MenuItem value={30}>Mess</MenuItem>
-                                                <MenuItem value={30}>Others</MenuItem>
-                                            </Select>
-                                        </FormControl>
-                                    </Grid>
-                                    <Grid item >
-                                        <Typography variant='h6' sx={{ fontWeight: 'bold' }}>Your Complaint Title</Typography>
-                                    </Grid>
-                                    <Grid item sx={{}}>
-                                        <TextField
-                                            id="filled-basic"
-                                            label="Title"
-                                            variant="filled"
+                                <Grid item>
+                                    <Typography variant='h6' sx={{ fontWeight: 'bold', }}>
+                                        Your complaint type
+                                    </Typography>
+                                </Grid>
+                                <Grid item>
+                                    <FormControl sx={{ backgroundColor: 'white', width: '100%' }}>
+                                        <Select
+                                            value={age}
+                                            onChange={handleChange}
+                                            displayEmpty
                                             size="small"
-                                            fullWidth
-                                            sx={{ backgroundColor: 'white', borderRadius: '4px' }}
-                                        />
-                                    </Grid>
-                                    <Grid item >
-                                        <Typography variant='h6' sx={{ fontWeight: 'bold' }}>Your Complaint description</Typography>
-                                    </Grid>
-                                    <Grid item >
-                                        <TextField
-                                            id="filled-basic"
-                                            label="Details of complaint..."
-                                            variant="filled"
-                                            fullWidth
-                                            size="small"
-                                            multiline
-                                            sx={{ backgroundColor: 'white', borderRadius: '4px' }}
-                                        />
-                                    </Grid>
-                                    <Grid item sx={{}}>
-                                        <Button variant="contained" fullWidth sx={{ height: '50px', marginTop: '10px' }}>Make complaint</Button>
-                                    </Grid>
+                                            inputProps={{ 'aria-label': 'Without label' }}
+                                            sx={{}}
+                                        >
+                                            <MenuItem value="">
+                                                <em>Electric</em>
+                                            </MenuItem>
+                                            <MenuItem value={10}>Wash Rooms</MenuItem>
+                                            <MenuItem value={20}>Cleaning</MenuItem>
+                                            <MenuItem value={30}>Mess</MenuItem>
+                                            <MenuItem value={30}>Others</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </Grid>
+                                <Grid item >
+                                    <Typography variant='h6' sx={{ fontWeight: 'bold' }}>Your Complaint Title</Typography>
+                                </Grid>
+                                <Grid item sx={{}}>
+                                    <TextField
+                                        id="filled-basic"
+                                        label="Title"
+                                        variant="filled"
+                                        size="small"
+                                        fullWidth
+                                        sx={{ backgroundColor: 'white', borderRadius: '4px' }}
+                                    />
+                                </Grid>
+                                <Grid item >
+                                    <Typography variant='h6' sx={{ fontWeight: 'bold' }}>Your Complaint description</Typography>
+                                </Grid>
+                                <Grid item >
+                                    <TextField
+                                        id="filled-basic"
+                                        label="Details of complaint..."
+                                        variant="filled"
+                                        fullWidth
+                                        size="small"
+                                        multiline
+                                        sx={{ backgroundColor: 'white', borderRadius: '4px' }}
+                                    />
+                                </Grid>
+                                <Grid item sx={{}}>
+                                    <Button variant="contained" fullWidth sx={{ height: '50px', marginTop: '10px' }}>Make complaint</Button>
                                 </Grid>
                             </Grid>
-
 
                             <Grid
                                 item
                                 sx={{
                                     backgroundColor: "#080808",
-                                    width: "45%",
-                                    minHeight: "50vh",
-                                    padding: '10px',
+                                    width: "40%",
+                                    minHeight: "40vh",
+                                    padding: '20px',
                                     height: "auto",
                                     "@media (max-width:1100px)": { width: "100%" },
                                     borderRadius: "8px",
@@ -167,7 +151,7 @@ function complaints() {
                                         flexDirection: "column",
                                         justifyContent: "start",
                                         padding: "15px",
-                                        height: "45vh",
+                                        height: "40vh",
                                         overflowY: "auto",
                                         flexWrap: "revert",
                                         gap: '10px',
@@ -309,8 +293,6 @@ function complaints() {
                                     </Grid>
                                 </Grid>
                             </Grid>
-
-
                         </Grid>
                     </Grid>
                 </Grid>
