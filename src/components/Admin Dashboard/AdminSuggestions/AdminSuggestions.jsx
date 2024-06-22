@@ -1,12 +1,26 @@
 import { Typography, Box, Toolbar, Grid, Link } from '@mui/material'
-import React from 'react'
+import {React,useEffect, useState} from 'react'
 import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
 import LibraryAddCheckOutlinedIcon from '@mui/icons-material/LibraryAddCheckOutlined';
+import {db} from '../../../firebaseConfig'
+//import {collection, doc,setDoc} from 'firebase/firestore'
+//import { collection, getDocs } from 'firebase/firestore';
+import { doc, getDoc } from "firebase/firestore";
 
 const headerHeight = 50;
 const drawerWidth = 240;
 
 function AdminSuggestions() {
+    const [data, setData] = useState([]);
+  
+  const [error, setError] = useState(null); // State to manage error state
+
+  
+  
+  
+        
+    console.log(data);
+    console.log(error)
     return (
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
             <Box component="main" sx={{

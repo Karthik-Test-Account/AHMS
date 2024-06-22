@@ -5,38 +5,12 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 
 const headerHeight=50,drawerWidth=220;
-import { BarChart } from '@mui/x-charts/BarChart';
+
 import { axisClasses } from '@mui/x-charts/ChartsAxis';
-import { color } from 'chart.js/helpers';
 
-const chartSetting = {
+import { BarChart } from '@mui/x-charts/BarChart';
 
-  width: 400,
-  height: 400,
-  sx: {
-    [`.${axisClasses.left} .${axisClasses.label}`]: {
-      transform: 'translate(-20px, 0)',
-      
-    },
-  },
-};
-const dataset = [
-  {
-    range: 59,
-    status: 'Accepted',
-  },
-  {
-    range: 20,
-    status: 'Rejected',
-  },
-  {
-    range: 47,
-    status: 'Unmarked',
-  },
 
-];
-
-const valueFormatter = (value) => `${value}mm`;
 
 
 function AdminMess() {
@@ -44,7 +18,7 @@ function AdminMess() {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Box component="main" sx={{
-        minHeight: '100vh', height: 'auto', backgroundColor: '#DDDDDD', display: 'flex', justifyContent: 'center', alignItems:'start',
+        minHeight: '100vh', height: 'auto', backgroundColor: '#1B1918', display: 'flex', justifyContent: 'center', alignItems:'start',
         padding: '0', marginTop: `${headerHeight}px`, '@media (min-width:600px)': { marginLeft: `${drawerWidth}px` }
       }}>
         
@@ -56,21 +30,24 @@ function AdminMess() {
 
           
               <Grid item sx={{marginTop:'50px',marginRight:'30px'}}>
-                <Typography variant='h4' align='center'color='black' fontWeight='bold'fontSize='2.5rem' fontFamily='"Gill Sans", sans-serif'>Manage Mess</Typography>
+                <Typography variant='h4' align='center'color='whitesmoke' fontWeight='bold'fontSize='2.5rem' fontFamily='"Gill Sans", sans-serif'>Manage Mess</Typography>
               </Grid>
             
              <Grid item sx={{marginTop:'40px','@media (max-width:980px)': { width: '100%' }}}>
                 <Grid container>
-                <BarChart
-                 dataset={dataset}
-                 series={[
-                   { dataKey: 'range', label: 'Request', valueFormatter },
-      
-                ]}
-                 {...chartSetting}
-                    
-                 
-                 />
+                
+
+
+                               <BarChart
+                                   xAxis={[{ scaleType: 'band', data: ['group A', 'group B', 'group C'],backgroundColor:'white' }]}
+                                 series={[{ data: [4, 3, 5] },]}
+                                          width={500}
+                                     height={300}
+                                     backgroundColor="white"
+                                     />
+  
+
+
 
                 </Grid>
              </Grid>
