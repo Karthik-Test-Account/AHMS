@@ -1,8 +1,9 @@
 import React from 'react';
-import { Box, Drawer, Toolbar } from '@mui/material';
+import { Box, Drawer, Toolbar,Typography } from '@mui/material';
 import SideBarText from '../Sidebar/SidebarHeading/SidebarText';
 import SidebarLogout from '../Sidebar/SidebarLogout/SidebarLogout';
 import SidebarItems from '../Sidebar/SidebarItems/SidebarItems';
+import SchoolIcon from '@mui/icons-material/School';
 
 const drawerWidth = 240;
 
@@ -11,8 +12,8 @@ function Sidebar(props) {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <SideBarText />
-      <SidebarLogout />
+   
+      {/* <SidebarLogout /> */}
       <Drawer
         sx={{
           width: drawerWidth,
@@ -28,8 +29,16 @@ function Sidebar(props) {
         variant="permanent"
         anchor="left"
       >
-        <Toolbar />
+      <Box >
+
+        <Box >
+        <SideBarText></SideBarText>
         <SidebarItems userMenu={props.userMenu}/>
+        </Box>
+        <Box>
+        <SidebarLogout></SidebarLogout>
+        </Box>
+      </Box>
       </Drawer>
     </Box>
   );

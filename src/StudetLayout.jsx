@@ -25,7 +25,7 @@ function StudentLayout() {
 
   return (
     <>
-        <Header/>
+        <Header userMenu={studentNavMenus}/>
         <Outlet/>
         <Sidebar userMenu={studentNavMenus}/>
     </>

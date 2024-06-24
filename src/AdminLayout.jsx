@@ -27,7 +27,7 @@ const adminNavMenus = [
 function AdminLayout() {
   return (
     <>
-      <Header />
+      <Header userMenu={adminNavMenus}/>
       <Outlet />
       <Sidebar userMenu={adminNavMenus} />
     </>

@@ -5,10 +5,13 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MenuIcon from '@mui/icons-material/Menu';
 import SidebarItems from '../Sidebar/SidebarItems/SidebarItems';
+import SideBarText from '../Sidebar/SidebarHeading/SidebarText';
+import SidebarLogout from '../Sidebar/SidebarLogout/SidebarLogout';
+// import { NavLink, useLocation } from 'react-router-dom';
 
 const drawerWidth = 240;
 
-function Header() {
+function Header(props) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -26,6 +29,7 @@ function Header() {
           '@media (max-width:600px)': { width: '100%' },
           backgroundColor: '#0C0A08',
           color: 'white',
+
         }}
       >
         <Toolbar>
@@ -60,12 +64,14 @@ function Header() {
           keepMounted: true, // Better open performance on mobile.
         }}
         sx={{
-          display: { xs: 'block', sm: 'none' },
+          display: { xs: 'block', sm: 'block' },
           '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, backgroundColor: 'black', color: 'white' },
         }}
       >
-        <Toolbar />
-        <SidebarItems onClick={handleDrawerToggle} />
+        
+        <SideBarText></SideBarText>
+        <SidebarItems onClick={handleDrawerToggle} userMenu={props.userMenu} />
+        <SidebarLogout ></SidebarLogout>
       </Drawer>
     </>
   );

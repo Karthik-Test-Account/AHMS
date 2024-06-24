@@ -7,8 +7,7 @@ const SidebarItems = ({ onClick, userMenu = [] }) => {
 
   return (
     <>
-      {/* {console.log("SidebarItems userMenu:", userMenu)} */}
-      <Divider sx={{ backgroundColor: 'white' }} />
+      
       <List>
         {userMenu.map((navMenu) => (
           <NavLink
@@ -21,7 +20,7 @@ const SidebarItems = ({ onClick, userMenu = [] }) => {
             }}
             onClick={onClick}
           >
-            <ListItem disablePadding>
+            <ListItem disablePadding sx={{display:{xs:"block",sm:"block",md:"block"}}}>
               <ListItemButton>
                 <ListItemIcon sx={{ color: location.pathname === navMenu.to ? '#1976D2' : 'white' }}>
                   {navMenu.icon}
@@ -32,7 +31,7 @@ const SidebarItems = ({ onClick, userMenu = [] }) => {
           </NavLink>
         ))}
       </List>
-      <Divider sx={{ backgroundColor: 'white' }} />
+      {/* <Divider sx={{ backgroundColor: 'white' }} /> */}
     </>
   );
 };
