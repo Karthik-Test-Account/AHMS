@@ -21,6 +21,8 @@ import Admincomplaints from "./components/Admin Dashboard/AdminComplaints/AdminC
 import AdminAllStudents from "./components/Admin Dashboard/AdminAllStudents/AdminAllStudents.jsx";
 import Adminvoice from  "./components/Admin Dashboard/Adminvoice/Adminvoice.jsx";
 
+import Settings from './components/Settings/Settings.jsx';
+
 const router = createBrowserRouter(
     createRoutesFromElements(
         <>
@@ -37,6 +39,7 @@ const router = createBrowserRouter(
                 <Route path='messoff' element={<MessOff />} />
                 <Route path='attendance' element={<Attendance />} />
                 <Route path='complaints' element={<Complaints />} />
+                <Route path="settings" element={<Settings/>}/>
             </Route>
             <Route path="admin" element={<AdminLayout />}>
                 <Route index element={<AdminHome />} />

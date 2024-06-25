@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppBar, CssBaseline, Grid, Toolbar, Drawer, IconButton } from '@mui/material';
+import { AppBar, CssBaseline, Grid, Toolbar, Drawer, IconButton,Menu,MenuItem } from '@mui/material';
 import SettingsIcon from '@mui/icons-material/Settings';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -7,16 +7,26 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SidebarItems from '../Sidebar/SidebarItems/SidebarItems';
 import SideBarText from '../Sidebar/SidebarHeading/SidebarText';
 import SidebarLogout from '../Sidebar/SidebarLogout/SidebarLogout';
-// import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const drawerWidth = 240;
 
 function Header(props) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [anchor,setAnchor]=useState(null);//for notifications and account
 
+  //for appbar
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  //for notifications
+  const handleClick=(e)=>{
+    setAnchor(e.currentTarget);
+  }
+  const handleClose=(e)=>{
+    setAnchor(null);
+  }
 
   return (
     <>
@@ -42,13 +52,34 @@ function Header(props) {
             <Grid item>
               <Grid container sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <Grid item className='icon'>
-                  <SettingsIcon />
+                  <NavLink style={{color:'white'}} to="/student/settings">
+                    <IconButton color="inherit" edge="start">
+                      <SettingsIcon/>
+                    </IconButton>
+                  </NavLink>
                 </Grid>
                 <Grid item className='icon'>
-                  <NotificationsIcon />
+                  <IconButton color="inherit" edge="start" onClick={handleClick}>
+                    <NotificationsIcon/>
+                  </IconButton>
+                  <Menu anchorEl={anchor} keepMounted open={Boolean(anchor)} onClose={handleClose} 
+                    sx={{
+                      '& .MuiPaper-root': {
+                        backgroundColor: 'black',
+                        color: 'white',
+                      },
+                    }}
+                    anchorOrigin={{vertical:'bottom',horizontal:'left'}}
+                    transformOrigin={{vertical:'top',horizontal:'right'}}
+                  >
+                    <MenuItem onClick={handleClose}>Settings</MenuItem>
+                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                  </Menu>
                 </Grid>
                 <Grid item className='icon'>
-                  <AccountCircleIcon />
+                  <IconButton color="inherit" edge="start" onClick={handleClick}>
+                    <AccountCircleIcon/>
+                  </IconButton>
                 </Grid>
               </Grid>
             </Grid>
