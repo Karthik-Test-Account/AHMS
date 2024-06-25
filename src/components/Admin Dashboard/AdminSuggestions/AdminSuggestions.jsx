@@ -4,7 +4,7 @@ import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
 import LibraryAddCheckOutlinedIcon from '@mui/icons-material/LibraryAddCheckOutlined';
 import {db} from '../../../firebaseConfig'
 //import {collection, doc,setDoc} from 'firebase/firestore'
-//import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import { doc, getDoc } from "firebase/firestore";
 
 const headerHeight = 50;
@@ -13,14 +13,35 @@ const drawerWidth = 240;
 function AdminSuggestions() {
     const [data, setData] = useState([]);
   
-  const [error, setError] = useState(null); // State to manage error state
 
+  
+  
+    useEffect(() => {
+        const fetchDocuments = async () => {
+            try {
+              const querySnapshot = await getDocs(collection(db, 'suggestions'));
+              const documents = [];
+              querySnapshot.forEach((doc) => {
+                documents.push({
+                  id: doc.id,
+                  ...doc.data()
+                });
+              });
+              setData(documents);
+            } catch (error) {
+              console.error('Error fetching documents: ', error);
+            }
+          };
+      
+          fetchDocuments();
+    
+  },[])
   
   
   
         
     console.log(data);
-    console.log(error)
+    
     return (
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
             <Box component="main" sx={{
@@ -54,13 +75,13 @@ function AdminSuggestions() {
                             }}
                         >
                             <Grid container sx={{ display: 'flex', flexDirection: 'column', padding: '30px', gap: '20px' }}>
-                                <Grid container sx={{ display: 'flex', flexDirection: 'column', }}>
+                                {data.map(doc=>(<Grid container sx={{ display: 'flex', flexDirection: 'column', }}>
                                     <Grid conatiner sx={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
                                         <Grid item >
                                             <LightbulbOutlinedIcon sx={{ fontSize: '30px', '@media (max-width:1136px)': { fontSize: '20px' } }} />
                                         </Grid>
                                         <Grid item>
-                                            <Typography variant='body1' sx={{ '@media (max-width:1136px)': { fontSize: '15px' } }}>Fee</Typography>
+                                            <Typography variant='body1' sx={{ '@media (max-width:1136px)': { fontSize: '15px' } }}>{doc.title}</Typography>
                                         </Grid>
                                         <Grid container sx={{ display: 'flex', justifyContent: 'end' }}>
                                             <LibraryAddCheckOutlinedIcon sx={{ cursor: 'pointer', fontSize: '30px', '@media (max-width:1136px)': { fontSize: '20px' } }} />
@@ -68,76 +89,16 @@ function AdminSuggestions() {
                                     </Grid>
                                     <Grid container sx={{ display: 'flex', flexDirection: 'column', gap: 'px' }}>
                                         <Grid item sx={{ marginLeft: '50px', marginTop: '-20px', '@media (max-width:1136px)': { marginLeft: '40px', marginTop: '-10px' } }}>
-                                            <Typography variant='caption' sx={{ color: 'gray', '@media (max-width:1136px)': { fontSize: '10px' } }}>Fee payment should be accepted using hbl mobile</Typography>
+                                            <Typography variant='caption' sx={{ color: 'gray', '@media (max-width:1136px)': { fontSize: '10px' } }}>{doc.description}</Typography>
                                         </Grid>
-                                        <Grid item sx={{ marginLeft: '50px', marginTop: '-10px', '@media (max-width:1136px)': { marginLeft: '40px', marginTop: '-10px' } }}>
-                                            <Link href="#" sx={{ fontSize: '0.8rem' }}>Read More</Link>
-                                        </Grid>
+                                        
                                     </Grid>
                                 </Grid>
-                                <Grid container sx={{ display: 'flex', flexDirection: 'column', }}>
-                                    <Grid conatiner sx={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
-                                        <Grid item >
-                                            <LightbulbOutlinedIcon sx={{ fontSize: '30px', '@media (max-width:1136px)': { fontSize: '20px' } }} />
-                                        </Grid>
-                                        <Grid item>
-                                            <Typography variant='body1' sx={{ '@media (max-width:1136px)': { fontSize: '15px' } }}>AC</Typography>
-                                        </Grid>
-                                        <Grid container sx={{ display: 'flex', justifyContent: 'end' }}>
-                                            <LibraryAddCheckOutlinedIcon sx={{ cursor: 'pointer', fontSize: '30px', '@media (max-width:1136px)': { fontSize: '20px' } }} />
-                                        </Grid>
-                                    </Grid>
-                                    <Grid container sx={{ display: 'flex', flexDirection: 'column', gap: 'px' }}>
-                                        <Grid item sx={{ marginLeft: '50px', marginTop: '-20px', '@media (max-width:1136px)': { marginLeft: '40px', marginTop: '-10px' } }}>
-                                            <Typography variant='caption' sx={{ color: 'gray', '@media (max-width:1136px)': { fontSize: '10px' } }}>May 20,2023</Typography>
-                                        </Grid>
-                                        <Grid item sx={{ marginLeft: '50px', marginTop: '-10px', '@media (max-width:1136px)': { marginLeft: '40px', marginTop: '-10px' } }}>
-                                            <Link href="#" sx={{ fontSize: '0.8rem' }}>Read More</Link>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-                                <Grid container sx={{ display: 'flex', flexDirection: 'column', }}>
-                                    <Grid conatiner sx={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
-                                        <Grid item >
-                                            <LightbulbOutlinedIcon sx={{ fontSize: '30px', '@media (max-width:1136px)': { fontSize: '20px' } }} />
-                                        </Grid>
-                                        <Grid item>
-                                            <Typography variant='body1' sx={{ '@media (max-width:1136px)': { fontSize: '15px' } }}>AC</Typography>
-                                        </Grid>
-                                        <Grid container sx={{ display: 'flex', justifyContent: 'end' }}>
-                                            <LibraryAddCheckOutlinedIcon sx={{ cursor: 'pointer', fontSize: '30px', '@media (max-width:1136px)': { fontSize: '20px' } }} />
-                                        </Grid>
-                                    </Grid>
-                                    <Grid container sx={{ display: 'flex', flexDirection: 'column', gap: 'px' }}>
-                                        <Grid item sx={{ marginLeft: '50px', marginTop: '-20px', '@media (max-width:1136px)': { marginLeft: '40px', marginTop: '-10px' } }}>
-                                            <Typography variant='caption' sx={{ color: 'gray', '@media (max-width:1136px)': { fontSize: '10px' } }}>May 20,2023</Typography>
-                                        </Grid>
-                                        <Grid item sx={{ marginLeft: '50px', marginTop: '-10px', '@media (max-width:1136px)': { marginLeft: '40px', marginTop: '-10px' } }}>
-                                            <Link href="#" sx={{ fontSize: '0.8rem' }}>Read More</Link>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-                                <Grid container sx={{ display: 'flex', flexDirection: 'column', }}>
-                                    <Grid conatiner sx={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
-                                        <Grid item >
-                                            <LightbulbOutlinedIcon sx={{ fontSize: '30px', '@media (max-width:1136px)': { fontSize: '20px' } }} />
-                                        </Grid>
-                                        <Grid item>
-                                            <Typography variant='body1' sx={{ '@media (max-width:1136px)': { fontSize: '15px' } }}>AC</Typography>
-                                        </Grid>
-                                        <Grid container sx={{ display: 'flex', justifyContent: 'end' }}>
-                                            <LibraryAddCheckOutlinedIcon sx={{ cursor: 'pointer', fontSize: '30px', '@media (max-width:1136px)': { fontSize: '20px' } }} />
-                                        </Grid>
-                                    </Grid>
-                                    <Grid container sx={{ display: 'flex', flexDirection: 'column', gap: 'px' }}>
-                                        <Grid item sx={{ marginLeft: '50px', marginTop: '-20px', '@media (max-width:1136px)': { marginLeft: '40px', marginTop: '-10px' } }}>
-                                            <Typography variant='caption' sx={{ color: 'gray', '@media (max-width:1136px)': { fontSize: '10px' } }}>May 20,2023</Typography>
-                                        </Grid>
-                                        <Grid item sx={{ marginLeft: '50px', marginTop: '-10px', '@media (max-width:1136px)': { marginLeft: '40px', marginTop: '-10px' } }}>
-                                            <Link href="#" sx={{ fontSize: '0.8rem' }}>Read More</Link>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
+                                ))}
+                                
+                                    
+                                
+                                
                             </Grid>
                         </Grid>
                     </Grid>
