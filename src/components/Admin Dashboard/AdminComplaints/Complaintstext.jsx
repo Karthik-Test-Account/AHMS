@@ -36,7 +36,7 @@ function Complaintstext(props) {
               }}
             >
               <Grid item>
-                <Typography sx={{ fontSize: "13px", color: "white" }}>
+                <Typography sx={{ fontSize: "15px", color: "white" }}>
                   {props.title}
                 </Typography>
               </Grid>
