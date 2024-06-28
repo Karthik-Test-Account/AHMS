@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Grid, Toolbar, Typography } from '@mui/material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import ImageUpload from './ImageUpload';
 
 const headerHeight = 50;
 const drawerWidth = 240;
@@ -81,6 +82,9 @@ function Invoices() {
             </Grid>
           </Grid>
           {/* END OF BOX */}
+          <Grid item>
+            <ImageUpload/>
+          </Grid>
         </Grid>
       </Box>
     </div>
