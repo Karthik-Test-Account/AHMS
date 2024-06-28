@@ -33,8 +33,8 @@ function AdminMess() {
                 <Typography variant='h4' align='center'color='whitesmoke' fontWeight='bold'fontSize='2.5rem' fontFamily='"Gill Sans", sans-serif'>Manage Mess</Typography>
               </Grid>
             
-             <Grid item sx={{marginTop:'40px','@media (max-width:980px)': { width: '100%' }}}>
-                <Grid container>
+             <Grid item sx={{marginTop:'40px','@media (max-width:980px)': { width: '85%' }}}>
+                <Grid container sx={{backgroundColor:"#bdbdbd",borderRadius:"10px"}}>
                 
 
 
@@ -51,7 +51,7 @@ function AdminMess() {
 
                 </Grid>
              </Grid>
-             <Grid item sx={{ width: '40%', height: 'auto',borderRadius:'7px', backgroundColor: 'black', '@media (max-width:980px)': { width: '85%' } }}>
+             <Grid item sx={{ width: '40%', height: 'auto',borderRadius:'7px', backgroundColor: 'black',marginTop:"30px","&::-webkit-scrollbar": { display: "none" }, '@media (max-width:980px)': { width: '85%' } }}>
             <Grid container sx={{ width: '100%',borderRadius:'7px', height: '100%', backgroundColor: '#090909', padding: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'start', gap: '10px',overflowY:'auto' }}>
               <Grid item>
                 <Typography variant='h6' color='whitesmoke'>All Invoices</Typography>

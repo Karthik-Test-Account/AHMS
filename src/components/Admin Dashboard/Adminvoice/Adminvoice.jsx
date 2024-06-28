@@ -27,7 +27,7 @@ function Adminvoice() {
                       <Grid item >
                               <Button variant="contained" size='medium'sx={{'@media (max-width:518px)': {size:"small"}}}>Generate Invoices</Button>
                       </Grid>
-                      <Grid item sx={{ width: '60%', height: 'auto',borderRadius:'10px', backgroundColor: 'black', '@media (max-width:980px)': { width: '100%' } }}>
+                      <Grid item sx={{ width: '60%', height: 'auto',borderRadius:'10px', backgroundColor: 'black', "&::-webkit-scrollbar": { display: "none" },'@media (max-width:980px)': { width: '100%' } }}>
             <Grid container sx={{ width: '100%',borderRadius:'10px', height: '100%', backgroundColor: '#090909', padding: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'start', gap: '10px',overflowY:'auto' }}>
               <Grid item>
                 <Typography variant='h6' color='whitesmoke'>All Invoices</Typography>

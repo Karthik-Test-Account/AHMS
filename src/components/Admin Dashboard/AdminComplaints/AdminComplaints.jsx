@@ -1,9 +1,14 @@
 import { Typography, Box, Toolbar, Grid } from "@mui/material";
-import React from "react";
+import {React,useEffect, useState} from "react";
 import { LineChart } from "@mui/x-charts/LineChart";
 import ErrorOutlineRoundedIcon from "@mui/icons-material/ErrorOutlineRounded";
 import Complaintstext from "./Complaintstext";
 import DoneIcon from "@mui/icons-material/Done";
+import {db} from '../../../firebaseConfig'
+//import {collection, doc,setDoc} from 'firebase/firestore'
+import { collection, getDocs } from 'firebase/firestore';
+import { doc, getDoc } from "firebase/firestore";
+
 
 const uData = [0, 0, 0, 0, 0, 0, 1];
 
@@ -20,7 +25,28 @@ const xLabels = [
 const headerHeight = 50;
 const drawerWidth = 240;
 
-function Admincomplaints() {
+function Admincomplaints(props) {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const fetchDocuments = async () => {
+        try {
+          const querySnapshot = await getDocs(collection(db, 'complaints'));
+          const documents = [];
+          querySnapshot.forEach((doc) => {
+            documents.push({
+              id: doc.id,
+              ...doc.data()
+            });
+          });
+          setData(documents);
+        } catch (error) {
+          console.error('Error fetching documents: ', error);
+        }
+      };
+  
+      fetchDocuments();
+
+},[])
   return (
     <div
       style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
@@ -132,42 +158,21 @@ function Admincomplaints() {
                     "&::-webkit-scrollbar": { display: "none" },
                   }}
                 >
-                  <Complaintstext
-                    title="abcd"
-                    description="lorem epsum 67"
+                  {data.map((cur,key)=>(<Complaintstext
+                     key={cur.id}
+                    title={cur.complainttype}
+                    metatitle={cur.complainttitle}
+                    name={cur.fname+" "+cur.lname}
+                    datess={cur.datetime}
+                    
                     lefticon={<ErrorOutlineRoundedIcon />}
                     righticon={<DoneIcon />}
+                  
                   />
-                  <Complaintstext
-                    title="xyz"
-                    description="lorem  epsum 67"
-                    lefticon={<ErrorOutlineRoundedIcon />}
-                    righticon={<DoneIcon />}
-                  />
-                  <Complaintstext
-                    title="abertecd"
-                    description="lorem epsum 67"
-                    lefticon={<ErrorOutlineRoundedIcon />}
-                    righticon={<DoneIcon />}
-                  />
-                  <Complaintstext
-                    title="hekekt"
-                    description="lorem epsum 67"
-                    lefticon={<ErrorOutlineRoundedIcon />}
-                    righticon={<DoneIcon />}
-                  />
-                  <Complaintstext
-                    title="erte"
-                    description="lorem epsum 67"
-                    lefticon={<ErrorOutlineRoundedIcon />}
-                    righticon={<DoneIcon />}
-                  />
-                  <Complaintstext
-                    title="abcd"
-                    description="lorem epsum 67"
-                    lefticon={<ErrorOutlineRoundedIcon />}
-                    righticon={<DoneIcon />}
-                  />
+                  ))}
+                  
+                  
+                  
                 </Grid>
               </Grid>
             </Grid>

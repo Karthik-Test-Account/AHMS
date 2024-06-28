@@ -36,15 +36,28 @@ function Complaintstext(props) {
               }}
             >
               <Grid item>
-                <Typography sx={{ fontSize: "13px", color: "white" }}>
+                <Typography sx={{ fontSize: "15px", color: "white" }}>
                   {props.title}
                 </Typography>
               </Grid>
               <Grid item>
-                <Typography sx={{ fontSize: "13px", color: "white" }}>
-                  {props.description}
+                <Typography sx={{ fontSize: "10px", color: "white" }}>
+                  {props.dates}
                 </Typography>
               </Grid>
+              <Grid item>
+                <Typography sx={{ fontSize: "12px", color: "white" }}>
+                  {props.name}
+                </Typography>
+              </Grid>
+              
+              <Grid item>
+                <Typography sx={{ fontSize: "12px", color: "white" }}>
+                  {props.datess}
+                </Typography>
+              </Grid>
+              
+             
             </Grid>
           </Grid>
         </Grid>
