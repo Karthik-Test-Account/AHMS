@@ -97,9 +97,8 @@ function AdminInvoice() {
                   All Invoices
                 </Typography>
               </Grid>
-              <InvoiceText></InvoiceText>
-              <InvoiceText></InvoiceText>
-              <InvoiceText></InvoiceText>
+              <InvoiceText name="Dhanush" roomNumber="123"></InvoiceText>
+              
               
               
             </Grid>
