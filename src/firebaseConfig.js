@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import {getFirestore} from 'firebase/firestore'
-
+import {getStorage} from 'firebase/storage'
 const firebaseConfig = {
   apiKey: "AIzaSyABU8sVlgPCPHEKmT3nuxbgIeFPJEA_8bo",
   authDomain: "ahms-e2e55.firebaseapp.com",
@@ -14,4 +14,6 @@ const app = initializeApp(firebaseConfig);
 
 const db=getFirestore(app);//reference for cloud firestore service
 
-export {db};
+const imageStore=getStorage(app);
+
+export {db,imageStore};
