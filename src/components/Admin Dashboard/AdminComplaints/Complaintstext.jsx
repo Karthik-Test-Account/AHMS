@@ -1,7 +1,50 @@
-import React from "react";
+import {React,useEffect,useState} from "react";
 import { Typography, Box, Toolbar, Grid } from "@mui/material";
 import ErrorOutlineRoundedIcon from "@mui/icons-material/ErrorOutlineRounded";
+import {db} from '../../../firebaseConfig'
+//import {collection, doc,setDoc} from 'firebase/firestore'
+import { collection, getDocs } from 'firebase/firestore';
+import { doc, getDoc } from "firebase/firestore";
+
 function Complaintstext(props) {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const fetchDocuments = async () => {
+        try {
+          const querySnapshot = await getDocs(collection(db, 'complaints'));
+          const documents = [];
+          querySnapshot.forEach((doc) => {
+            documents.push({
+              id: doc.id,
+              ...doc.data()
+            });
+          });
+          documents.sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
+
+           //console.log(documents)
+          setData(documents);
+
+        } catch (error) {
+          console.error('Error fetching documents: ', error);
+        }
+      };
+  
+      fetchDocuments();
+
+},[])
+const handleDelete=()=>{
+  data.map((docu)=>{const docRef = db.collection('complaints').doc(docu.id);
+
+  // Delete the document
+  docRef.delete().then(() => {
+    console.log("Document successfully deleted!");
+  }).catch((error) => {
+    console.error("Error removing document: ", error);
+  });
+})
+
+
+}
   return (
     <>
       <Grid

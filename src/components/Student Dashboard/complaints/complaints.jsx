@@ -131,7 +131,8 @@ function Complaints() {
             }
         }
     };
-
+      // Sort events array by dateTime property in descending order
+    
     return (
         <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
             <Box component="main" sx={{
