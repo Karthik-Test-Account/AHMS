@@ -16,6 +16,7 @@ export default function UseFormControl() {
           backgroundColor: "gray",
           border: "none",
           outline: "none",
+          borderRadius: "10px",
           cursor: "pointer",
           color: "white",
           "& .MuiOutlinedInput-root": {

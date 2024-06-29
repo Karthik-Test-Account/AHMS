@@ -1,11 +1,15 @@
-import { createBrowserRouter, Route, createRoutesFromElements } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Route,
+  createRoutesFromElements,
+} from "react-router-dom";
 import LandingPageLayout from "./LandingPageLayout";
 import LandingPageBody from "./components/Landing Page/LandingPageBody";
-import SignIn from './components/Auth/SignIn'
-import SignUp from './components/Auth/SignUp'
+import SignIn from "./components/Auth/SignIn";
+import SignUp from "./components/Auth/SignUp";
 
-import StudentLayout from './StudetLayout'
-import Home from './components/Student Dashboard/Home/Home.jsx'
+import StudentLayout from "./StudetLayout";
+import Home from "./components/Student Dashboard/Home/Home.jsx";
 import Invoices from "./components/Student Dashboard/Invoices/Invoices.jsx";
 import MessOff from "./components/Student Dashboard/MessOff/MessOff.jsx";
 import Suggestions from "./components/Student Dashboard/Suggestions/Suggestions.jsx";
@@ -19,39 +23,41 @@ import RegisterStudent from "./components/Admin Dashboard/RegisterStudent/Regist
 import AdminSuggestions from "./components/Admin Dashboard/AdminSuggestions/AdminSuggestions.jsx";
 import Admincomplaints from "./components/Admin Dashboard/AdminComplaints/AdminComplaints.jsx";
 import AdminAllStudents from "./components/Admin Dashboard/AdminAllStudents/AdminAllStudents.jsx";
-import AdminInvoice from  "./components/Admin Dashboard/AdminInvoice/AdminInvoice.jsx";
+import AdminInvoice from "./components/Admin Dashboard/AdminInvoice/AdminInvoice.jsx";
+import AdminAttendance from "./components/Admin Dashboard/AdminAttendance/AdminAttendance.jsx";
 
-import Settings from './components/Settings/Settings.jsx';
+import Settings from "./components/Settings/Settings.jsx";
 
 const router = createBrowserRouter(
-    createRoutesFromElements(
-        <>
-            <Route path="/" element={<LandingPageLayout />}>
-                <Route index element={<LandingPageBody />} />
-                <Route path="login" element={<SignIn />} />
-                <Route path="signup" element={<SignUp />} />
-                <Route path="adminlogin" element={<SignIn title="Manager" />} />
-            </Route>
-            <Route path="student" element={<StudentLayout />}>
-                <Route index element={<Home />} />
-                <Route path='suggestions' element={<Suggestions />} />
-                <Route path='invoices' element={<Invoices />} />
-                <Route path='messoff' element={<MessOff />} />
-                <Route path='attendance' element={<Attendance />} />
-                <Route path='complaints' element={<Complaints />} />
-                <Route path="settings" element={<Settings/>}/>
-            </Route>
-            <Route path="admin" element={<AdminLayout />}>
-                <Route index element={<AdminHome />} />
-                <Route path="mess" element={<AdminMess />} />
-                <Route path="registerstudent" element={<RegisterStudent />} />
-                <Route path="suggestions" element={<AdminSuggestions />} />
-                <Route path="complaints" element={<Admincomplaints />} />
-                <Route path="allstudents" element={<AdminAllStudents />} />
-                <Route path="invoices" element={<AdminInvoice />} />
-            </Route>
-        </>
-    )
-)
+  createRoutesFromElements(
+    <>
+      <Route path="/" element={<LandingPageLayout />}>
+        <Route index element={<LandingPageBody />} />
+        <Route path="login" element={<SignIn />} />
+        <Route path="signup" element={<SignUp />} />
+        <Route path="adminlogin" element={<SignIn title="Manager" />} />
+      </Route>
+      <Route path="student" element={<StudentLayout />}>
+        <Route index element={<Home />} />
+        <Route path="suggestions" element={<Suggestions />} />
+        <Route path="invoices" element={<Invoices />} />
+        <Route path="messoff" element={<MessOff />} />
+        <Route path="attendance" element={<Attendance />} />
+        <Route path="complaints" element={<Complaints />} />
+        <Route path="settings" element={<Settings />} />
+      </Route>
+      <Route path="admin" element={<AdminLayout />}>
+        <Route index element={<AdminHome />} />
+        <Route path="mess" element={<AdminMess />} />
+        <Route path="registerstudent" element={<RegisterStudent />} />
+        <Route path="suggestions" element={<AdminSuggestions />} />
+        <Route path="complaints" element={<Admincomplaints />} />
+        <Route path="allstudents" element={<AdminAllStudents />} />
+        <Route path="invoices" element={<AdminInvoice />} />
+        <Route path="attendance" element={<AdminAttendance />} />
+      </Route>
+    </>
+  )
+);
 
 export default router;
