@@ -21,8 +21,6 @@ const studentNavMenus = [
 ];
 
 function StudentLayout() {
-  console.log("StudentLayout studentNavMenus:", studentNavMenus);
-
   return (
     <>
         <Header userMenu={studentNavMenus}/>

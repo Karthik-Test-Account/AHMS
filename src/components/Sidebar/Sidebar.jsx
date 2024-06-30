@@ -8,8 +8,6 @@ import SchoolIcon from '@mui/icons-material/School';
 const drawerWidth = 240;
 
 function Sidebar(props) {
-  console.log("Sidebar props.userMenu:", props.userMenu);
-
   return (
     <Box sx={{ display: 'flex' }}>
    

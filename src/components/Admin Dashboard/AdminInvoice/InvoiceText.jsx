@@ -1,34 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import ConfirmationNumberOutlinedIcon from '@mui/icons-material/ConfirmationNumberOutlined';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ImageIcon from '@mui/icons-material/Image';
-import { Grid, IconButton, Typography, CircularProgress, Box, Dialog, DialogContent, DialogTitle } from '@mui/material';
-import { storage } from '../../../firebaseConfig';
-
-
+import { Grid, IconButton, Typography, CircularProgress, Box, Dialog, DialogContent} from '@mui/material';
+import { imageStore } from '../../../firebaseConfig';
+import {getDownloadURL,ref} from 'firebase/storage'
 function InvoiceText(props) {
-  // const [imageUrl, setImageUrl] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState(false);
-
-  
-  const [imageUrl, setImageUrl] = useState('');
-
- 
-
-    // fetchImage();
+  const [imageURL,setImageURL]=useState('');
+  const [loading,setLoading]=useState(false);
+  const [open,setOpen]=useState(false);
 
 
-  const handleClickOpen = () => {
+
+  const fetchImage=async()=>{
     setLoading(true);
     setOpen(true);
-    setLoading(false);
-  };
+    try {
+      const imageRef=ref(imageStore,`Invoices/d4628d87-348f-44dd-ba55-257b4cf02735}`);
+      console.log("got image ref: "+imageRef);
+      const url=await getDownloadURL(imageRef);
+      console.log("got url: "+url);
+      setImageURL(url);
+    } catch (error) {
+      console.log("error : "+error);
+    }finally{
+      setLoading(false);
+    }
+  }
 
   const handleClose = () => {
     setOpen(false);
+    setImageURL('');
   };
-
   return (
     <>
       <Grid
@@ -92,7 +95,7 @@ function InvoiceText(props) {
           }}
         >
           <Grid item>
-            <IconButton onClick={handleClickOpen}>
+            <IconButton onClick={fetchImage}>
               <ImageIcon fontSize="small" sx={{ color: "whitesmoke" }} />
             </IconButton>
           </Grid>
@@ -106,16 +109,16 @@ function InvoiceText(props) {
           </Grid>
         </Grid>
       </Grid>
-      
-      <Dialog open={open} onClose={handleClose} maxWidth="lg">
-        <DialogTitle>Image Preview</DialogTitle>
+
+      {/* for loading image */}
+      <Dialog open={open} onClose={handleClose}>
         <DialogContent>
           {loading ? (
-            <Box display="flex" justifyContent="center" alignItems="center" height="100%">
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px' }}>
               <CircularProgress />
             </Box>
           ) : (
-            <img src={imageUrl} alt="Invoice" style={{ width: '100%', height: 'auto' }} />
+            <img src={imageURL} alt="Invoice" style={{ width: '100%' }} />
           )}
         </DialogContent>
       </Dialog>
