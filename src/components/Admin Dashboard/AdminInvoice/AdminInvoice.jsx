@@ -1,18 +1,80 @@
 import {
-  height,
-  width,
-} from "@fortawesome/free-regular-svg-icons/faAddressBook";
-import ConfirmationNumberOutlinedIcon from "@mui/icons-material/ConfirmationNumberOutlined";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-// import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
-
+  collection,
+  getDocs,
+  doc,
+  getDoc,
+} from "firebase/firestore";
+import { db } from "../../../firebaseConfig";
 import { Typography, Box, Grid, Button } from "@mui/material";
 import InvoiceText from "./InvoiceText";
-// import React from "react";
+import { useState, useEffect } from "react";
+
 const headerHeight = 50,
   drawerWidth = 240;
 
 function AdminInvoice() {
+  const [data, setData] = useState([]);
+  const [invoiceDetails, setInvoiceDetails] = useState([]);
+  // const [image,setImage]= useState([]);
+
+  useEffect(() => {
+    const fetchDocuments = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "invoices"));
+        const documents = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        // Sort documents by datetime in descending order
+        documents.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
+
+        setData(documents);
+      } catch (error) {
+        console.error("Error fetching documents: ", error);
+      }
+    };
+
+    fetchDocuments();
+  }, []);
+
+  useEffect(() => {
+    const fetchStudentDetails = async () => {
+      const results = [];
+      // const imageRes=[];
+      for (const details of data) {
+        try {
+          let imageId= details.imageId;
+          let studentId = details.studentId;
+          let docId = details.id;
+
+          const docRef = doc(db, "students", studentId);
+          // console.log(docId)
+          const docSnap = await getDoc(docRef);
+
+          if (docSnap.exists()) {
+            let name = `${docSnap.data().firstName} ${docSnap.data().lastName}`;
+            results.push({ name, roomNumber: "123",imageId,docId});
+            // imageRes.push(imageId); // Adjust roomNumber as needed
+          } else {
+            console.log("No such document!");
+          }
+          
+        } catch (error) {
+          console.error("Error getting document:", error);
+        }
+      }
+      setInvoiceDetails(results);
+      // setImage(imageRes);
+    };
+
+    if (data.length > 0) {
+      fetchStudentDetails();
+    }
+  }, [data]);
+  
+  
+
   return (
     <div
       style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
@@ -44,8 +106,6 @@ function AdminInvoice() {
           }}
         >
           <Grid item>
-            {" "}
-            I
             <Typography
               variant="h4"
               align="center"
@@ -97,10 +157,15 @@ function AdminInvoice() {
                   All Invoices
                 </Typography>
               </Grid>
-              <InvoiceText name="Dhanush" roomNumber="123"></InvoiceText>
-              
-              
-              
+              {invoiceDetails.map((details, index) => (
+                <InvoiceText
+                  key={index}
+                  name={details.name}
+                  roomNumber={details.roomNumber}
+                  imageId={details.imageId}
+                  docId={details.docId}
+                />
+              ))}
             </Grid>
           </Grid>
         </Grid>

@@ -1,37 +1,58 @@
-import React, { useState} from 'react';
+import { useState } from 'react';
 import ConfirmationNumberOutlinedIcon from '@mui/icons-material/ConfirmationNumberOutlined';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ImageIcon from '@mui/icons-material/Image';
-import { Grid, IconButton, Typography, CircularProgress, Box, Dialog, DialogContent} from '@mui/material';
-import { imageStore } from '../../../firebaseConfig';
-import {getDownloadURL,ref} from 'firebase/storage'
+import { Grid, IconButton, Typography, CircularProgress, Box, Dialog, DialogContent } from '@mui/material';
+import { imageStore,db } from '../../../firebaseConfig';
+import { getDownloadURL, ref, deleteObject } from 'firebase/storage';
+import { doc, deleteDoc } from 'firebase/firestore';
+// import { db } from '../../../firebaseConfig';
 function InvoiceText(props) {
-  const [imageURL,setImageURL]=useState('');
-  const [loading,setLoading]=useState(false);
-  const [open,setOpen]=useState(false);
+  const [imageURL, setImageURL] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
 
-
-
-  const fetchImage=async()=>{
+  const fetchImage = async (imageId) => {
     setLoading(true);
     setOpen(true);
     try {
-      const imageRef=ref(imageStore,`Invoices/d4628d87-348f-44dd-ba55-257b4cf02735}`);
-      console.log("got image ref: "+imageRef);
-      const url=await getDownloadURL(imageRef);
-      console.log("got url: "+url);
+      const imageRef = ref(imageStore, `Invoices/${imageId}`);
+      console.log("got image ref: " + imageRef);
+      const url = await getDownloadURL(imageRef);
+      console.log("got url: " + url);
       setImageURL(url);
     } catch (error) {
-      console.log("error : "+error);
-    }finally{
+      console.log("error: " + error);
+    } finally {
       setLoading(false);
     }
-  }
+  };
 
+  const deleteImage = async (imageId) => {
+    try {
+      console.log("Deleting image with ID:", imageId);
+      const imageRef = ref(imageStore, `Invoices/${imageId}`);
+      await deleteObject(imageRef);
+  
+      console.log("Deleting document with ID:", props.docId);
+      const docRef = doc(db, 'invoices', props.docId); // Reference to the document in Firestore
+      await deleteDoc(docRef);
+  
+      console.log("Image and document deleted successfully.");
+      setImageURL(''); // Clear the image URL if needed
+    } catch (error) {
+      console.error("Error deleting image or document: ", error);
+    }
+  };
+  
+
+  
+  
   const handleClose = () => {
     setOpen(false);
     setImageURL('');
   };
+
   return (
     <>
       <Grid
@@ -95,12 +116,12 @@ function InvoiceText(props) {
           }}
         >
           <Grid item>
-            <IconButton onClick={fetchImage}>
+            <IconButton onClick={() => fetchImage(props.imageId)}>
               <ImageIcon fontSize="small" sx={{ color: "whitesmoke" }} />
             </IconButton>
           </Grid>
           <Grid item>
-            <IconButton>
+            <IconButton onClick={() => deleteImage(props.imageId)}>
               <CheckCircleOutlineIcon
                 fontSize="small"
                 sx={{ color: "whitesmoke" }}
@@ -110,7 +131,7 @@ function InvoiceText(props) {
         </Grid>
       </Grid>
 
-      {/* for loading image */}
+      {/* Dialog for loading image */}
       <Dialog open={open} onClose={handleClose}>
         <DialogContent>
           {loading ? (

@@ -48,7 +48,7 @@ const ImageUpload = () => {
       console.log('File ready to be uploaded:', selectedFile);
       const imgId=v4();
       // DATABSE CODE
-      const imageRef = ref(imageStore, `Invoices/${imgId}}`);
+      const imageRef = ref(imageStore, `Invoices/${imgId}`);
       await uploadBytes(imageRef, selectedFile);
       console.log("file stored in database");
 
