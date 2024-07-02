@@ -7,6 +7,8 @@ import LandingPageLayout from "./LandingPageLayout";
 import LandingPageBody from "./components/Landing Page/LandingPageBody";
 import SignIn from "./components/Auth/SignIn";
 import SignUp from "./components/Auth/SignUp";
+import ContactUs from "./components/Contact us/ContactUs.jsx";
+import About from "./components/About/About.jsx";
 
 import StudentLayout from "./StudetLayout";
 import Home from "./components/Student Dashboard/Home/Home.jsx";
@@ -35,6 +37,8 @@ const router = createBrowserRouter(
         <Route index element={<LandingPageBody />} />
         <Route path="login" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />
+        <Route path="contactus" element={<ContactUs />} />
+        <Route path="about" element={<About />} />
         <Route path="adminlogin" element={<SignIn title="Manager" />} />
       </Route>
       <Route path="student" element={<StudentLayout />}>
