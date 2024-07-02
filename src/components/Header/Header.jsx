@@ -59,8 +59,14 @@ function Header(props) {
                   </NavLink>
                 </Grid>
                 <Grid item className='icon'>
-                  <IconButton color="inherit" edge="start" onClick={handleClick}>
+                  <IconButton color="inherit" edge="start" >
                     <NotificationsIcon/>
+                  </IconButton>
+                  
+                </Grid>
+                <Grid item className='icon'>
+                  <IconButton color="inherit" edge="start" onClick={handleClick}>
+                    <AccountCircleIcon/>
                   </IconButton>
                   <Menu anchorEl={anchor} keepMounted open={Boolean(anchor)} onClose={handleClose} 
                     sx={{
@@ -69,17 +75,12 @@ function Header(props) {
                         color: 'white',
                       },
                     }}
-                    anchorOrigin={{vertical:'bottom',horizontal:'left'}}
+                    anchorOrigin={{vertical:'bottom',horizontal:'right'}}
                     transformOrigin={{vertical:'top',horizontal:'right'}}
                   >
                     <MenuItem onClick={handleClose}>Settings</MenuItem>
                     <MenuItem onClick={handleClose}>Logout</MenuItem>
                   </Menu>
-                </Grid>
-                <Grid item className='icon'>
-                  <IconButton color="inherit" edge="start" onClick={handleClick}>
-                    <AccountCircleIcon/>
-                  </IconButton>
                 </Grid>
               </Grid>
             </Grid>

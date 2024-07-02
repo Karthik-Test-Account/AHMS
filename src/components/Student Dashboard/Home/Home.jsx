@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Grid, Toolbar, Typography } from "@mui/material";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PieChartComponent from "../../PieChart/PieChart";
+import { browserLocalPersistence, getAuth, onAuthStateChanged, setPersistence } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../../firebaseConfig";
 
 const drawerWidth = 240;
 const headerHeight = 50;
@@ -12,6 +15,38 @@ const data = [
 ];
 
 function Home() {
+  const [userName,setUserName]= useState('');
+  useEffect(() => {
+    const auth = getAuth();
+
+    // Set persistence
+    setPersistence(auth, browserLocalPersistence)
+      .then(() => {
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            const fetchUserData = async () => {
+              const userDocRef = doc(db, 'students', user.uid);
+              const userDoc = await getDoc(userDocRef);
+
+              if (userDoc.exists()) {
+                const userData = userDoc.data();
+                setUserName(userData.firstName+" "+userData.lastName);
+                console.log(userName) 
+              } else {
+                console.log("No such document!");
+              }
+            };
+
+            fetchUserData();
+          } else {
+            console.log("No user is signed in.");
+          }
+        });
+      })
+      .catch((error) => {
+        console.error("Error setting persistence:", error);
+      });
+  }, []);
   return (
     <div
       style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
@@ -45,7 +80,7 @@ function Home() {
         >
           <Grid item>
             <Typography variant="h3" fontWeight={600} align="center">
-              Welcome <span style={{ color: "#1976D2" }}>PERSON</span>
+              Welcome <span style={{ color: "#1976D2" }}>{userName}</span>
             </Typography>
           </Grid>
           <Grid item sx={{ width: "100%" }}>
