@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Typography, Box, Toolbar, Grid, Button } from '@mui/material';
 import PieChartComponent from '../../PieChart/PieChart';
 import { db } from '../../../firebaseConfig';
-import { collection, getDocs, doc, setDoc } from 'firebase/firestore';
+import { collection, getDocs,setDoc,doc } from 'firebase/firestore';
 import { v4 as uuidv4 } from 'uuid';
 import { getAuth } from 'firebase/auth';
 
@@ -24,6 +24,7 @@ function MessOff() {
   const [stat, setStat] = useState('');
   const [time, setTime] = useState(null);
   const [time1, setTime1] = useState(null);
+  const [datas, setDatas] = useState([]);
 
   useEffect(() => {
     const auth = getAuth();
@@ -76,18 +77,17 @@ function MessOff() {
         querySnapshot.forEach(doc => {
           if (doc.data().usermail === userMail) {
             // Assuming 'status' is a field in your 'request' documents
-            documents.push(doc.data().status);
-            documents.push(new Date(doc.data().time));
-            documents.push(new Date(doc.data().time1));
-             // Store as Date object
+            documents.push({
+              id: doc.id,
+              ...doc.data() // Store all data from the document
+            });
           }
         });
 
         if (documents.length > 0) {
-          // Assuming you want to set the latest status
-          setStat(documents[0]);
-          setTime(new Date(documents[1]));
-          setTime1(new Date(documents[2])) // Store as Date object
+          // Store all fetched documents in state
+          documents.sort((a, b) => new Date(b.time1) - new Date(a.time1));
+          setDatas(documents);
         }
       } catch (error) {
         console.error('Error fetching status: ', error);
@@ -263,65 +263,67 @@ function MessOff() {
                       All Requests
                     </Typography>
                   </Grid>
-                  <Grid
-                    item
-                    sx={{
-                      width: '100%',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      padding: '5px'
-                    }}
-                  >
-                    {/* start of box */}
+                  {datas.map((item, index) => (
                     <Grid
-                      container
+                      key={index}
+                      item
                       sx={{
-                        width: '60%',
+                        width: '100%',
                         display: 'flex',
-                        justifyContent: 'start',
                         alignItems: 'center',
-                        gap: '10px'
+                        justifyContent: 'space-between',
+                        padding: '5px'
                       }}
                     >
-                      <Grid item>
-                        <Grid
-                          container
-                          sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'start'
-                          }}
-                        >
-                          <Grid item>
-                            <Typography sx={{ fontSize: '15px', color: 'whitesmoke' }}>
-                              {stat}
-                            </Typography>
-                          </Grid>
-                          <Grid item>
-                            <Typography sx={{ fontSize: '15px', color: '#838383' }}>
-                              {time ? time.toLocaleString() : ''}
-                              {time1 ? time1.toLocaleString() : ''}
-                            </Typography>
+                      {/* Display each document's information */}
+                      <Grid
+                        container
+                        sx={{
+                          width: '60%',
+                          display: 'flex',
+                          justifyContent: 'start',
+                          alignItems: 'center',
+                          gap: '10px'
+                        }}
+                      >
+                        <Grid item>
+                          <Grid
+                            container
+                            sx={{
+                              display: 'flex',
+                              flexDirection: 'column',
+                              alignItems: 'start'
+                            }}
+                          >
+                            <Grid item>
+                              <Typography sx={{ fontSize: '15px', color: 'whitesmoke' }}>
+                                {item.status} {/* Assuming 'status' is a field in 'request' documents */}
+                              </Typography>
+                            </Grid>
+                            <Grid item>
+                              <Typography sx={{ fontSize: '15px', color: '#838383' }}>
+                                {item.time ? item.time.toLocaleString() : ''}{"      "}{"to"}{" "}
+                                {item.time1 ? item.time1.toLocaleString() : ''}
+                              </Typography>
+                            </Grid>
                           </Grid>
                         </Grid>
                       </Grid>
-                    </Grid>
-                    <Grid
-                      container
-                      sx={{
-                        width: 'calc(40% - 10px)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'end'
-                      }}
-                    >
-                      <Grid item>
-                        <Typography sx={{ fontSize: '14px' }}>June 8</Typography>
+                      <Grid
+                        container
+                        sx={{
+                          width: 'calc(40% - 10px)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'end'
+                        }}
+                      >
+                        <Grid item>
+                          <Typography sx={{ fontSize: '14px' }}>{new Date().getDate()+"-"+new Date().getMonth()+"-"+new Date().getFullYear()}</Typography>
+                        </Grid>
                       </Grid>
                     </Grid>
-                    {/* end of box */}
-                  </Grid>
+                  ))}
                 </Grid>
               </Grid>
             </Grid>

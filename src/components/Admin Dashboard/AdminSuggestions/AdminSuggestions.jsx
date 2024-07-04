@@ -5,7 +5,7 @@ import LibraryAddCheckOutlinedIcon from '@mui/icons-material/LibraryAddCheckOutl
 import {db} from '../../../firebaseConfig'
 //import {collection, doc,setDoc} from 'firebase/firestore'
 import { collection, getDocs } from 'firebase/firestore';
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc,deleteDoc } from "firebase/firestore";
 
 const headerHeight = 50;
 const drawerWidth = 240;
@@ -28,6 +28,7 @@ function AdminSuggestions() {
                 });
               });
               setData(documents);
+              console.log(data)
             } catch (error) {
               console.error('Error fetching documents: ', error);
             }
@@ -36,6 +37,17 @@ function AdminSuggestions() {
           fetchDocuments();
     
   },[])
+  const handleDelete = async (suggestionId) => {
+    try {
+        await deleteDoc(doc(db, 'suggestions', suggestionId));
+        console.log('Document successfully deleted!');
+        // Update state to reflect deletion
+        setData(data.filter((suggestion) => suggestion.id !== suggestionId));
+    } catch (error) {
+        console.error('Error removing document: ', error);
+    }
+};
+
   
   
   
@@ -84,7 +96,7 @@ function AdminSuggestions() {
                                             <Typography variant='body1' sx={{ '@media (max-width:1136px)': { fontSize: '15px' } }}>{doc.title}</Typography>
                                         </Grid>
                                         <Grid container sx={{ display: 'flex', justifyContent: 'end' }}>
-                                            <LibraryAddCheckOutlinedIcon sx={{ cursor: 'pointer', fontSize: '30px', '@media (max-width:1136px)': { fontSize: '20px' } }} />
+                                            <LibraryAddCheckOutlinedIcon sx={{ cursor: 'pointer', fontSize: '30px', '@media (max-width:1136px)': { fontSize: '20px' } }} onClick={() => handleDelete(doc.id)}/>
                                         </Grid>
                                     </Grid>
                                     <Grid container sx={{ display: 'flex', flexDirection: 'column', gap: 'px' }}>

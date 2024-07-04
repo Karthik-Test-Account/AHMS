@@ -65,9 +65,13 @@ function AdminMess() {
         // Step 1: Fetch all documents in "request" collection
         const querySnapshot = await getDocs(collection(db, "request"));
 
-      querySnapshot.forEach(async (doc) => {
-        await deleteDoc(doc.ref);
-      });
+        querySnapshot.forEach(async (doc) => {
+          const requestData = doc.data();
+          const c=doc.time1.getDate();
+          if (requestData.usermail === docData.useremail && new Date().getDay()>c) {
+            await deleteDoc(doc.ref);
+          }
+        });
 
         // Step 5: Set a new document in "request" collection
         await setDoc(doc(db, "request", uuidv4()), {
@@ -103,11 +107,14 @@ function AdminMess() {
         const querySnapshot = await getDocs(collection(db, "request"));
 
       querySnapshot.forEach(async (doc) => {
+        if(doc.usermail===docData.useremail){
         await deleteDoc(doc.ref);
+        }
       });
 
         // Step 5: Set a new document in "request" collection
         await setDoc(doc(db, "request", uuidv4()), {
+          
           status: "Rejected",
           time: docData.returndate,
           usermail: docData.useremail
