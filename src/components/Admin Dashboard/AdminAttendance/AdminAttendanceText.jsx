@@ -3,7 +3,7 @@ import { Typography, Box, Toolbar, Grid } from "@mui/material";
 import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
 import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlineRounded";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
-function AdminAttendanceText() {
+function AdminAttendanceText(props) {
   return (
     <>
       <Box
@@ -26,10 +26,10 @@ function AdminAttendanceText() {
           />
           <div>
             <Typography sx={{ fontSize: "12px", color: "white" }}>
-              Karthik RAM
+              {props.name}
             </Typography>
             <Typography sx={{ fontSize: "12px", color: "white" }}>
-              502502 | Room:241
+              502502 | Room:{props.roomNumber}
             </Typography>
           </div>
         </Box>

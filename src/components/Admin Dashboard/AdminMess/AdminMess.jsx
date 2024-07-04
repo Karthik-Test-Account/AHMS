@@ -241,7 +241,7 @@ function AdminMess() {
               }}
             >
               <Typography variant="h6" color="whitesmoke" sx={{ paddingLeft: '10px' }}>
-                All Invoices
+                All Mess Info
               </Typography>
               {data.map((cur) => (
                 <Grid

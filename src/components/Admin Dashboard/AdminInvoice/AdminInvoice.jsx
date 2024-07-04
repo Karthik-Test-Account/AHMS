@@ -118,15 +118,7 @@ function AdminInvoice() {
               Invoices
             </Typography>
           </Grid>
-          <Grid item>
-            <Button
-              variant="contained"
-              size="medium"
-              sx={{ "@media (max-width:518px)": { size: "small" } }}
-            >
-              Generate Invoices
-            </Button>
-          </Grid>
+          
           <Grid
             item
             sx={{
