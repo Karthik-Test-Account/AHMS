@@ -112,7 +112,12 @@ function MessOff() {
 
     if (leavingDate === '' || returnDate === '') {
       alert('Please select both leaving and return dates.');
-    } else {
+    }
+    else if(new Date(returnDate).getDate()<new Date(leavingDate).getDate())
+    {
+      alert("please select correct date")
+    }
+     else {
       try {
         await setDoc(doc(db, 'messoff', uuidv4()), {
           leavedate: leavingDate,
