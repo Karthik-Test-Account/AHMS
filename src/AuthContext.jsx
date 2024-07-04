@@ -1,6 +1,6 @@
 // src/AuthContext.js
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, setPersistence, browserLocalPersistence } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 
 const AuthContext = createContext();
@@ -13,12 +13,24 @@ export const AuthProvider = ({ children }) => {
   const auth = getAuth();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
-      setLoading(false);
-    });
-    return unsubscribe;
+    const setupAuth = async () => {
+      try {
+        await setPersistence(auth, browserLocalPersistence);
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+          setCurrentUser(user);
+          setLoading(false);
+        });
+        return unsubscribe;
+      } catch (error) {
+        console.error("Failed to set auth persistence:", error);
+      }
+    };
+    setupAuth();
   }, [auth]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <AuthContext.Provider value={{ currentUser }}>
