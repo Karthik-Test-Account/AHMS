@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import { AppBar, CssBaseline, Grid, Toolbar, Drawer, IconButton,Menu,MenuItem } from '@mui/material';
 import SettingsIcon from '@mui/icons-material/Settings';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -8,7 +8,7 @@ import SidebarItems from '../Sidebar/SidebarItems/SidebarItems';
 import SideBarText from '../Sidebar/SidebarHeading/SidebarText';
 import SidebarLogout from '../Sidebar/SidebarLogout/SidebarLogout';
 import { NavLink } from 'react-router-dom';
-
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 const drawerWidth = 240;
 
 function Header(props) {
@@ -27,6 +27,24 @@ function Header(props) {
   const handleClose=(e)=>{
     setAnchor(null);
   }
+
+  const [userMail, setUserMail] = useState(null);
+  
+  useEffect(() => {
+    const auth=getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        // User is signed in, you can get user details here
+        setUserMail(currentUser.email);
+      } else {
+        // User is signed out
+        setUserMail(null);
+      }
+    });
+
+    // Clean up the subscription on unmount
+    return () => unsubscribe();
+  }, []);
 
   return (
     <>
@@ -52,11 +70,13 @@ function Header(props) {
             <Grid item>
               <Grid container sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <Grid item className='icon'>
-                  <NavLink style={{color:'white'}} to="/student/settings">
+                {userMail !== 'xyz@gmail.com' && (
+                  <NavLink style={{ color: 'white' }} to="/student/settings">
                     <IconButton color="inherit" edge="start">
-                      <SettingsIcon/>
+                      <SettingsIcon />
                     </IconButton>
                   </NavLink>
+                )}
                 </Grid>
                 <Grid item className='icon'>
                   <IconButton color="inherit" edge="start" >
