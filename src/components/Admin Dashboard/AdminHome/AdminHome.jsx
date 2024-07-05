@@ -17,7 +17,7 @@ const headerHeight = 50,
 
 function AdminHome() {
   const [data, setData] = useState([]);
-  const [suggestionData,setSuggestionData]= useState([])
+  const [suggestionData, setSuggestionData] = useState([]);
   useEffect(() => {
     const fetchDocuments = async () => {
       try {
@@ -28,7 +28,6 @@ function AdminHome() {
         }));
 
         setData(documents);
-        
       } catch (error) {
         console.error("Error fetching documents: ", error);
       }
@@ -40,26 +39,25 @@ function AdminHome() {
   //suggestions
   useEffect(() => {
     const fetchDocuments = async () => {
-        try {
-          const querySnapshot = await getDocs(collection(db, 'suggestions'));
-          const documents = [];
-          querySnapshot.forEach((doc) => {
-            documents.push({
-              id: doc.id,
-              ...doc.data()
-            });
+      try {
+        const querySnapshot = await getDocs(collection(db, "suggestions"));
+        const documents = [];
+        querySnapshot.forEach((doc) => {
+          documents.push({
+            id: doc.id,
+            ...doc.data(),
           });
-          setSuggestionData(documents);
-          // console.log(data)
-        } catch (error) {
-          console.error('Error fetching documents: ', error);
-        }
-      };
-  
-      fetchDocuments();
+        });
+        setSuggestionData(documents);
+        // console.log(data)
+      } catch (error) {
+        console.error("Error fetching documents: ", error);
+      }
+    };
 
-},[])
-// console.log(suggestionData)
+    fetchDocuments();
+  }, []);
+  // console.log(suggestionData)
 
   const [userName, setUserName] = useState("");
   useEffect(() => {
@@ -93,7 +91,7 @@ function AdminHome() {
         console.error("Error setting persistence:", error);
       });
   }, []);
-// console.log(suggestionData)
+  // console.log(suggestionData)
   return (
     <div
       style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
@@ -287,30 +285,38 @@ function AdminHome() {
                   <Grid item>
                     <HelpOutlineIcon />
                   </Grid>
-                  {
-                    data.map((cur)=>(
-                      
-                  <Grid item sx={{ display: "flex", flexDirection: "column" }} key={cur.id}>
-                    <Grid item>
-                      <Typography sx={{ fontSize: "13px" }}>
-                      {cur.fname} {cur.lname} [Room:212]
-                      </Typography>
+                  {data.map((cur) => (
+                    <Grid
+                      item
+                      sx={{ display: "flex", flexDirection: "column" }}
+                      key={cur.id}
+                    >
+                      <Grid item>
+                        <Typography sx={{ fontSize: "13px" }}>
+                          {cur.fname} {cur.lname} [Room:212]
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography sx={{ fontSize: "12px", color: "#606060" }}>
+                          Jun 23 to Jun 26
+                        </Typography>
+                      </Grid>
                     </Grid>
-                    <Grid item>
-                      <Typography sx={{ fontSize: "12px", color: "#606060" }}>
-                        Jun 23 to Jun 26
-                      </Typography>
-                    </Grid>
-                  </Grid>
                   ))}
                 </Grid>
-                </Grid>
+              </Grid>
               <Grid item sx={{ width: "100%" }}>
                 <Button variant="contained" fullWidth>
-                <NavLink to='/admin/mess' style={{color:"white",textDecoration:'none',width:"100%"}}>
-                  
-                  Manage mess
-              </NavLink>
+                  <NavLink
+                    to="/admin/mess"
+                    style={{
+                      color: "white",
+                      textDecoration: "none",
+                      width: "100%",
+                    }}
+                  >
+                    Manage mess
+                  </NavLink>
                 </Button>
               </Grid>
             </Grid>
@@ -337,47 +343,60 @@ function AdminHome() {
               </Grid>
               <Grid
                 item
-                sx={{ width: "100%", height: "100px", overflowY: "auto" }}
+                sx={{
+                  width: "100%",
+                  height: "100px",
+                  overflowY: "auto",
+                  "&::-webkit-scrollbar": { display: "none" },
+                }}
               >
-                  {suggestionData.map((cur)=>(
-                <Grid
-                  container
-                  gap={1}
-                  sx={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "start",
-                    alignItems: "center",
-                  }}key={cur.id}
-                >
-                  <Grid item>
-                    <AddCircleOutlineIcon />
-                  </Grid>
-
-                  <Grid item sx={{ display: "flex", flexDirection: "column" }} >
+                {suggestionData.map((cur) => (
+                  <Grid
+                    container
+                    gap={1}
+                    sx={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "start",
+                      alignItems: "center",
+                    }}
+                    key={cur.id}
+                  >
                     <Grid item>
-                      <Typography sx={{ fontSize: "13px" }}>
-                        {cur.title} 
-                      </Typography>
+                      <AddCircleOutlineIcon />
                     </Grid>
-                    <Grid item>
-                      <Typography sx={{ fontSize: "12px", color: "#606060" }}>
-                        {cur.description}
-                      </Typography>
+
+                    <Grid
+                      item
+                      sx={{ display: "flex", flexDirection: "column" }}
+                    >
+                      <Grid item>
+                        <Typography sx={{ fontSize: "13px" }}>
+                          {cur.title}
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography sx={{ fontSize: "12px", color: "#606060" }}>
+                          {cur.description}
+                        </Typography>
+                      </Grid>
                     </Grid>
                   </Grid>
-                </Grid>
-                  ))
-
-                  }
+                ))}
               </Grid>
               <Grid item sx={{ width: "100%" }}>
                 <Button variant="contained" fullWidth>
-              <NavLink to='/admin/suggestions' style={{color:"white",textDecoration:'none',width:"100%"}}>
-                  Manage Suggestions
-              </NavLink>
+                  <NavLink
+                    to="/admin/suggestions"
+                    style={{
+                      color: "white",
+                      textDecoration: "none",
+                      width: "100%",
+                    }}
+                  >
+                    Manage Suggestions
+                  </NavLink>
                 </Button>
-
               </Grid>
             </Grid>
           </Grid>
