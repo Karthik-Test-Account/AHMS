@@ -31,6 +31,8 @@ function dateToWords(date) {
 function AdminMess() {
   const [data, setData] = useState([]);
   const [rejectedStatus, setRejectedStatus] = useState(false);
+  const [acc,setAcc]=useState(0)
+  const [unm,setUnm]=useState(0)
 
   useEffect(() => {
     const fetchDocuments = async () => {
@@ -93,8 +95,10 @@ function AdminMess() {
     } catch (error) {
       console.error('Error removing document: ', error);
     }
+    setAcc((prevAcc) => prevAcc + 1);
+    
   };
-
+console.log(acc)
   const handleReject = async (complaintId) => {
     try {
       const documentRef = doc(db, 'messoff', complaintId);
@@ -132,6 +136,7 @@ function AdminMess() {
     } catch (error) {
       console.error('Error removing document: ', error);
     }
+    setUnm((prevUnm) => prevUnm + 1);
     
   };
 
@@ -200,11 +205,11 @@ function AdminMess() {
             >
               <BarChart
                 series={[
-                  { data: [35, 44, 24] },
+                  { data: [{acc},{unm}] },
 
                 ]}
                 height={290}
-                xAxis={[{ data: ['Q1', 'Q2', 'Q3'], scaleType: 'band' }]}
+                xAxis={[{ data: ['Accepted','Rejected'], scaleType: 'band' }]}
                 margin={{ top: 10, bottom: 30, left: 40, right: 10 }}
               />
             </Grid>

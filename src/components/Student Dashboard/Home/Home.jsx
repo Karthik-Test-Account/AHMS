@@ -9,13 +9,27 @@ import { db } from "../../../firebaseConfig";
 const drawerWidth = 240;
 const headerHeight = 50;
 
-const data = [
-  { category: "Days off", value: 35 },
-  { category: "Days present", value: 65 },
-];
 
-function Home() {
+
+function Home(props) {
   const [userName,setUserName]= useState('');
+  const [total,setTotal]=useState(0)
+    const [present,setPresent]=useState(0)
+    const [absent,setAbsent]=useState(0)
+    const [userMail, setUserMail] = useState('');
+    useEffect(() => {
+      const auth = getAuth();
+      const unsubscribe = auth.onAuthStateChanged(user => {
+          if (user) {
+              setUserMail(user.email);
+          } else {
+              alert('No user is signed in.');
+              setUserMail('');
+          }
+      });
+
+      return () => unsubscribe(); // Clean up the listener
+  }, []);
   useEffect(() => {
     const auth = getAuth();
 
@@ -47,6 +61,73 @@ function Home() {
         console.error("Error setting persistence:", error);
       });
   }, []);
+  useEffect(() => {
+    const now = new Date();
+    setTotal(now.getDay());
+    setPresent(now.getDay()) 
+    
+    
+    
+    
+    
+}, []); // 
+  useEffect(() => {
+    const fetchDocuments = async () => {
+        try {
+            const querySnapshot = await getDocs(collection(db, 'request'));
+            const documents = [];
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                if (data.usermail === userMail && new Date().getDate()>new Date(data.time).getDate()) {
+                    documents.push({
+                        id: doc.id,
+                        ...doc.data() // Store all data from the document
+                      });
+                }
+            });
+            setDatas(documents)
+           console.log(datas)
+            if (documents.length >= 1) {
+                let totalAbsent = 0;
+                 documents.forEach(doc => {
+                const c = new Date(doc.time).getDate();
+                const d = new Date(doc.time1).getDate();
+                const today = now.getDate();
+
+                if (today!=c && today <= d) {
+                    totalAbsent += d - c;
+                }
+                else{
+
+                }
+            });
+              setAbsent(totalAbsent)
+              setPresent(total-absent)
+            
+                 // Adjust state update
+            } else {
+                console.log('Insufficient documents found.');
+                // Reset time and time1 to null or some default values if needed
+                setTime(null);
+                setTime1(null);
+                // Reset absent and present if necessary
+                //setAbsent(0);
+                //setPresent(0);
+            }
+        } catch (error) {
+            console.error('Error fetching documents: ', error);
+        }
+    };
+
+    if (userMail) {
+        fetchDocuments();
+    }
+}, [userMail, total]); 
+const data=[
+  {category:"Days Off",value:total},
+  {category:"Present",value:present}
+]
+
   return (
     <div
       style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}

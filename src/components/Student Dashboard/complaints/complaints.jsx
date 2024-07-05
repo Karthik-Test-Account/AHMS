@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from "uuid";
 import Complaintstext from '../../Admin Dashboard/AdminComplaints/Complaintstext';
 import Admincomplaints from '../../Admin Dashboard/AdminComplaints/AdminComplaints';
 
+
 const drawerWidth = 240;
 const headerHeight = 50;
 
@@ -21,6 +22,7 @@ function Complaints() {
     const [data, setData] = useState({ ctitle: "", cdescription: "" });
     const [check, setCheck] = useState('Electric'); // Default value for complaint type
     const [currentDateTime, setCurrentDateTime] = useState('');
+    
 
     useEffect(() => {
         const auth = getAuth();
@@ -110,7 +112,8 @@ function Complaints() {
         e.preventDefault();
 
         if (data.ctitle.trim() === "" || data.cdescription.trim() === "") {
-            alert("Please fill in all fields");
+            alert("fill the all fields")
+          
         } else {
             try {
                 await setDoc(doc(db, "complaints", uuidv4()), {

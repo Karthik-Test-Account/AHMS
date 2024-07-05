@@ -6,14 +6,11 @@ import CloseIcon from '@mui/icons-material/Close';
 import { db } from '../../../firebaseConfig';
 import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+import Home from '../../Student Dashboard/Home/Home.jsx'
 
 const drawerWidth = 240;
 const headerHeight = 50;
 
-const data = [
-    { category: 'Days off', value: 3 },
-    { category: 'Days present', value: 5 },
-];
 
 function Attendance() {
     const now=new Date()
@@ -98,7 +95,12 @@ function Attendance() {
         if (userMail) {
             fetchDocuments();
         }
-    }, [userMail, total]); // Depend on userMail and total changes
+    }, [userMail, total]); 
+    
+    const data = [
+        { category: 'Days off', value: total},
+        { category: 'Days present', value: present },
+    ];// Depend on userMail and total changes
     
     
     
@@ -151,6 +153,7 @@ function Attendance() {
                 </Grid>
 
             </Box>
+           
         </div >
     )
 }

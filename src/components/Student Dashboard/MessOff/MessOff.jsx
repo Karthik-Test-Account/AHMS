@@ -9,11 +9,7 @@ import { getAuth } from 'firebase/auth';
 const headerHeight = 50;
 const drawerWidth = 240;
 
-const data = [
-  { category: 'Mess off', value: 0 },
-  { category: 'Requested Mess', value: 2 },
-  { category: 'Mess Attended', value: 8 }
-];
+
 
 function MessOff() {
   const [leavingDate, setLeavingDate] = useState('');
@@ -25,6 +21,8 @@ function MessOff() {
   const [time, setTime] = useState(null);
   const [time1, setTime1] = useState(null);
   const [datas, setDatas] = useState([]);
+  const [request,setRequest]=useState()
+  
 
   useEffect(() => {
     const auth = getAuth();
@@ -88,6 +86,7 @@ function MessOff() {
           // Store all fetched documents in state
           documents.sort((a, b) => new Date(b.time1) - new Date(a.time1));
           setDatas(documents);
+          setRequest(documents.length)
         }
       } catch (error) {
         console.error('Error fetching status: ', error);
@@ -98,6 +97,11 @@ function MessOff() {
       fetchStatus();
     }
   }, [userMail]);
+  const data = [
+    { category: 'Mess off', value:new Date().getDate() },
+    { category: 'Requested Mess', value:request },
+    
+  ];
 
   const handleLeavingDateChange = e => {
     setLeavingDate(e.target.value);
@@ -183,13 +187,11 @@ function MessOff() {
               }}
             >
               <Grid item>
-                <Typography>Total Mess: 8</Typography>
+                <Typography>Total Mess: {new Date().getDate()}</Typography>
               </Grid>
+              
               <Grid item>
-                <Typography>Mess Off: 0</Typography>
-              </Grid>
-              <Grid item>
-                <Typography>Requests Sent: 2</Typography>
+                <Typography>Requests Sent: {request}</Typography>
               </Grid>
             </Grid>
           </Grid>
