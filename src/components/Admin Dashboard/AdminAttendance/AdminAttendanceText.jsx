@@ -41,14 +41,7 @@ function AdminAttendanceText(props) {
             gap: "5px",
             alignItems: "center",
           }}
-        >
-          <Grid item>
-            <CheckCircleOutlineRoundedIcon />
-          </Grid>
-          <Grid item>
-            <CancelOutlinedIcon />
-          </Grid>
-        </Box>
+        ></Box>
       </Box>
     </>
   );

@@ -66,7 +66,8 @@ function Header(props) {
   };
 
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null); // for notifications and account
+  const [anchorEl, setAnchorEl] = useState(null); // for notifications
+  const [anchor, setAnchor] = useState(null); // for account menu
 
   // For appbar
   const handleDrawerToggle = () => {
@@ -82,13 +83,12 @@ function Header(props) {
     setAnchorEl(null);
   };
 
-  const [anchor, setAnchor] = useState(null); // for notifications and account
-
-  // For notifications
-  const handleClick = (e) => {
-    setAnchor(e.currentTarget);
+  // For account menu
+  const handleAccountClick = (event) => {
+    setAnchor(event.currentTarget);
   };
-  const handleClose = (e) => {
+
+  const handleAccountClose = () => {
     setAnchor(null);
   };
 
@@ -201,10 +201,7 @@ function Header(props) {
                   <IconButton
                     color="inherit"
                     edge="start"
-                    onClick={handleClickSnackbar({
-                      vertical: "top",
-                      horizontal: "right",
-                    })}
+                    onClick={handleAccountClick}
                   >
                     <AccountCircleIcon />
                   </IconButton>
@@ -212,7 +209,7 @@ function Header(props) {
                     anchorEl={anchor}
                     keepMounted
                     open={Boolean(anchor)}
-                    onClose={handleClose}
+                    onClose={handleAccountClose}
                     sx={{
                       "& .MuiPaper-root": {
                         backgroundColor: "black",
@@ -222,8 +219,8 @@ function Header(props) {
                     anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
                     transformOrigin={{ vertical: "top", horizontal: "right" }}
                   >
-                    <MenuItem onClick={handleClose}>Settings</MenuItem>
-                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                    <MenuItem onClick={handleAccountClose}>Settings</MenuItem>
+                    <MenuItem onClick={handleAccountClose}>Logout</MenuItem>
                   </Menu>
                 </Grid>
               </Grid>

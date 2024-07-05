@@ -4,9 +4,16 @@ import ConfirmationNumberOutlinedIcon from "@mui/icons-material/ConfirmationNumb
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import { db } from "../../../firebaseConfig"; // Ensure correct import path
-import { collection, getDocs, doc, deleteDoc, getDoc, setDoc} from "firebase/firestore"; // Ensure batch is imported
+import {
+  collection,
+  getDocs,
+  doc,
+  deleteDoc,
+  getDoc,
+  setDoc,
+} from "firebase/firestore"; // Ensure batch is imported
 
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 const headerHeight = 50,
   drawerWidth = 220;
@@ -17,8 +24,18 @@ import { BarChart } from "@mui/x-charts/BarChart";
 const currentDate = new Date();
 function dateToWords(date) {
   const months = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
 
   const day = date.getDate();
@@ -31,8 +48,8 @@ function dateToWords(date) {
 function AdminMess() {
   const [data, setData] = useState([]);
   const [rejectedStatus, setRejectedStatus] = useState(false);
-  const [acc,setAcc]=useState(0)
-  const [unm,setUnm]=useState(0)
+  const [acc, setAcc] = useState(0);
+  const [unm, setUnm] = useState(0);
 
   useEffect(() => {
     const fetchDocuments = async () => {
@@ -58,7 +75,7 @@ function AdminMess() {
 
   const handleDelete = async (complaintId) => {
     try {
-      const documentRef = doc(db, 'messoff', complaintId);
+      const documentRef = doc(db, "messoff", complaintId);
       const docSnapshot = await getDoc(documentRef);
 
       if (docSnapshot.exists()) {
@@ -69,8 +86,11 @@ function AdminMess() {
 
         querySnapshot.forEach(async (doc) => {
           const requestData = doc.data();
-          const c=doc.time1.getDate();
-          if (requestData.usermail === docData.useremail && new Date().getDay()>c) {
+          const c = doc.time1.getDate();
+          if (
+            requestData.usermail === docData.useremail &&
+            new Date().getDay() > c
+          ) {
             await deleteDoc(doc.ref);
           }
         });
@@ -79,29 +99,28 @@ function AdminMess() {
         await setDoc(doc(db, "request", uuidv4()), {
           status: "Approved",
           time: docData.leavedate,
-          time1:docData.returndate,
-          usermail: docData.useremail
+          time1: docData.returndate,
+          usermail: docData.useremail,
         });
 
         // Step 6: Delete document from "messoff" collection
         await deleteDoc(documentRef);
-        console.log('Approved and Document successfully deleted!');
+        console.log("Approved and Document successfully deleted!");
 
         // Update state to reflect deletion
         setData(data.filter((complaint) => complaint.id !== complaintId));
       } else {
-        console.error('Document does not exist!');
+        console.error("Document does not exist!");
       }
     } catch (error) {
-      console.error('Error removing document: ', error);
+      console.error("Error removing document: ", error);
     }
     setAcc((prevAcc) => prevAcc + 1);
-    
   };
-console.log(acc)
+  console.log(acc);
   const handleReject = async (complaintId) => {
     try {
-      const documentRef = doc(db, 'messoff', complaintId);
+      const documentRef = doc(db, "messoff", complaintId);
       const docSnapshot = await getDoc(documentRef);
 
       if (docSnapshot.exists()) {
@@ -110,38 +129,38 @@ console.log(acc)
         // Step 1: Fetch all documents in "request" collection
         const querySnapshot = await getDocs(collection(db, "request"));
 
-      querySnapshot.forEach(async (doc) => {
-        if(doc.usermail===docData.useremail){
-        await deleteDoc(doc.ref);
-        }
-      });
+        querySnapshot.forEach(async (doc) => {
+          if (doc.usermail === docData.useremail) {
+            await deleteDoc(doc.ref);
+          }
+        });
 
         // Step 5: Set a new document in "request" collection
         await setDoc(doc(db, "request", uuidv4()), {
-          
           status: "Rejected",
           time: docData.returndate,
-          usermail: docData.useremail
+          usermail: docData.useremail,
         });
 
         // Step 6: Delete document from "messoff" collection
         await deleteDoc(documentRef);
-        console.log('Approved and Document successfully deleted!');
+        console.log("Approved and Document successfully deleted!");
 
         // Update state to reflect deletion
         setData(data.filter((complaint) => complaint.id !== complaintId));
       } else {
-        console.error('Document does not exist!');
+        console.error("Document does not exist!");
       }
     } catch (error) {
-      console.error('Error removing document: ', error);
+      console.error("Error removing document: ", error);
     }
     setUnm((prevUnm) => prevUnm + 1);
-    
   };
 
   return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+    <div
+      style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+    >
       <Box
         component="main"
         sx={{
@@ -204,12 +223,9 @@ console.log(acc)
               }}
             >
               <BarChart
-                series={[
-                  { data: [{acc},{unm}] },
-
-                ]}
+                series={[{ data: [30, 40] }]}
                 height={290}
-                xAxis={[{ data: ['Accepted','Rejected'], scaleType: 'band' }]}
+                xAxis={[{ data: ["Accepted", "Rejected"], scaleType: "band" }]}
                 margin={{ top: 10, bottom: 30, left: 40, right: 10 }}
               />
             </Grid>
@@ -226,8 +242,8 @@ console.log(acc)
               backgroundColor: "black",
               marginTop: "30px",
               "@media (max-width:980px)": { maxWidth: "85%" },
-              overflowY: 'auto',
-              '&::-webkit-scrollbar': { display: 'none' },
+              overflowY: "auto",
+              "&::-webkit-scrollbar": { display: "none" },
             }}
           >
             <Grid
@@ -242,10 +258,13 @@ console.log(acc)
                 flexDirection: "column",
                 justifyContent: "start",
                 gap: "10px",
-               
               }}
             >
-              <Typography variant="h6" color="whitesmoke" sx={{ paddingLeft: '10px' }}>
+              <Typography
+                variant="h6"
+                color="whitesmoke"
+                sx={{ paddingLeft: "10px" }}
+              >
                 All Mess Info
               </Typography>
               {data.map((cur) => (
@@ -261,18 +280,37 @@ console.log(acc)
                     width: "100%",
                   }}
                 >
-                  <Grid item sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                    <ConfirmationNumberOutlinedIcon fontSize="small" sx={{ color: "whitesmoke" }} />
+                  <Grid
+                    item
+                    sx={{ display: "flex", alignItems: "center", gap: "10px" }}
+                  >
+                    <ConfirmationNumberOutlinedIcon
+                      fontSize="small"
+                      sx={{ color: "whitesmoke" }}
+                    />
                     <div>
-                      <Typography sx={{ fontSize: "13px", color: "whitesmoke" }}>
+                      <Typography
+                        sx={{ fontSize: "13px", color: "whitesmoke" }}
+                      >
                         {cur.fname} {cur.lname} [Room:212]
                       </Typography>
-                      <Typography sx={{ fontSize: "11px", color: "rgb(120, 120, 120)" }}>
-                        from: {dateToWords(new Date(cur.leavedate))} | to: {dateToWords(new Date(cur.returndate))}
+                      <Typography
+                        sx={{ fontSize: "11px", color: "rgb(120, 120, 120)" }}
+                      >
+                        from: {dateToWords(new Date(cur.leavedate))} | to:{" "}
+                        {dateToWords(new Date(cur.returndate))}
                       </Typography>
                     </div>
                   </Grid>
-                  <Grid item sx={{ display: "flex", alignItems: "center", justifyContent: "end", gap: "10px" }}>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "end",
+                      gap: "10px",
+                    }}
+                  >
                     <CheckCircleOutlineIcon
                       fontSize="small"
                       sx={{ color: "whitesmoke", cursor: "pointer" }}
@@ -290,7 +328,6 @@ console.log(acc)
           </Grid>
         </Grid>
       </Box>
-      
     </div>
   );
 }

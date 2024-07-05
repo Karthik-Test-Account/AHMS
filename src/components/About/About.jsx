@@ -55,10 +55,10 @@ function About() {
                 justifyContent: "space-between",
               }}
             >
-              <Carddata />
-              <Carddata />
-              <Carddata />
-              <Carddata />
+              <Carddata name="karthik ram" />
+              <Carddata name="dhanush" />
+              <Carddata name="sai teja" />
+              <Carddata name="shiva sai" />
             </Grid>
           </Grid>
         </Grid>

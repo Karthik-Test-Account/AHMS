@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Typography, Button } from "@mui/material";
 import profile from "../../assets/profile.jpeg";
-function Carddata() {
+function Carddata(props) {
   return (
     <>
       <Grid
@@ -42,7 +42,7 @@ function Carddata() {
                 fontSize: "20px",
               }}
             >
-              karthik ram
+              {props.name}
             </Typography>
           </Grid>
           <Grid item>

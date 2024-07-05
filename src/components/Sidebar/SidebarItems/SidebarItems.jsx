@@ -1,13 +1,19 @@
-import React from 'react';
-import { List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider } from '@mui/material';
-import { NavLink, useLocation } from 'react-router-dom';
+import React from "react";
+import {
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Divider,
+} from "@mui/material";
+import { NavLink, useLocation } from "react-router-dom";
 
 const SidebarItems = ({ onClick, userMenu = [] }) => {
   const location = useLocation();
 
   return (
     <>
-      
       <List>
         {userMenu.map((navMenu) => (
           <NavLink
@@ -15,14 +21,22 @@ const SidebarItems = ({ onClick, userMenu = [] }) => {
             key={navMenu.text}
             className="active-link"
             style={{
-              color: location.pathname === navMenu.to ? '#1976D2' : 'white',
-              textDecoration: 'none',
+              color: location.pathname === navMenu.to ? "#1976D2" : "white",
+              textDecoration: "none",
             }}
             onClick={onClick}
           >
-            <ListItem disablePadding sx={{display:{xs:"block",sm:"block",md:"block"}}}>
+            <ListItem
+              disablePadding
+              sx={{ display: { xs: "block", sm: "block", md: "block" } }}
+            >
               <ListItemButton>
-                <ListItemIcon sx={{ color: location.pathname === navMenu.to ? '#1976D2' : 'white' }}>
+                <ListItemIcon
+                  sx={{
+                    color:
+                      location.pathname === navMenu.to ? "#1976D2" : "white",
+                  }}
+                >
                   {navMenu.icon}
                 </ListItemIcon>
                 <ListItemText primary={navMenu.text} />
